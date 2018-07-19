@@ -4,11 +4,8 @@
 
 ## User Journey
 
-1. User initialises application.
-1. User is automatically taken to the main menu.
-1. User can select summary of transactions or to enter a new transaction.
-1. From summary of transactions or enter a new transaction, user can select the other option or go to the main menu.
-1. User logs out.
+1. User runs application.
+1. Application prints report.
 
 ## Requirements
 
