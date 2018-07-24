@@ -21,6 +21,16 @@ public class BankTest {
         assertEquals(5, balance);
     }
 
+    @Test
+    public void testTransaction() {
+        Transaction transaction1 = makeTransaction(10);
+        assertEquals(10, bank.add(transaction1));
+        Transaction transaction2 = makeTransaction(-8);
+        assertEquals(2, bank.add(transaction2));
+        Transaction transaction3 = makeTransaction(4);
+        assertEquals(6, bank.add(transaction3));
+    }
+
     private Transaction makeTransaction(long money) {
         Transaction transaction = new Transaction();
         transaction.setMoney(money);
