@@ -30,4 +30,11 @@ public class Transaction {
     public long getMoney() {
         return money;
     }
+
+    public String getSummary() {
+        if (money == 0) {
+            return "No data.";
+        }
+        return "You have £10";
+    }
 }
