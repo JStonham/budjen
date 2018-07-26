@@ -6,29 +6,32 @@ import static org.junit.Assert.assertEquals;
 //Must be public, void and have no input arguments
 //Must be annotated with @Test
 //test driven development
+//tdd rules:
+//1. RED. Write as little test code as possible to make your production code fail.
+//2. GREEN. Write as little production code as possible to make your test pass.
+//3. REFACTOR. Clean up the code. (Not allowed to change the behaviour of the production code).
+
 public class BankTest {
-    Bank bank = new Bank();//<Type> <variable name> = new <Constructor call>;
+    public static final long BIG_NUMBER = 64000000000l;
+    private Bank bank = new Bank();
 
     @Test
-    public void testZero() {
-        Transaction transaction = makeTransaction(0);
-        assertEquals(0, bank.add(transaction));
+    public void hasZeroBalanceByDefault() {
+        assertEquals(0, bank.getBalance());
     }
 
     @Test
-    public void testFive() {
-        long balance = bank.add(makeTransaction(5));
-        assertEquals(5, balance);
+    public void canHandleMultipleTransactions() {
+        bank.addTransaction(makeTransaction(128));
+        bank.addTransaction(makeTransaction(-256));
+        bank.addTransaction(makeTransaction(64));
+        assertEquals(-64, bank.getBalance());
     }
 
     @Test
-    public void testTransaction() {
-        Transaction transaction1 = makeTransaction(10);
-        assertEquals(10, bank.add(transaction1));
-        Transaction transaction2 = makeTransaction(-8);
-        assertEquals(2, bank.add(transaction2));
-        Transaction transaction3 = makeTransaction(4);
-        assertEquals(6, bank.add(transaction3));
+    public void canHandleVeryLargeAmountsOfMoney() {
+        bank.addTransaction(makeTransaction(BIG_NUMBER));
+        assertEquals(BIG_NUMBER, bank.getBalance());
     }
 
     private Transaction makeTransaction(long money) {
@@ -36,5 +39,4 @@ public class BankTest {
         transaction.setMoney(money);
         return transaction;
     }
-
 }
