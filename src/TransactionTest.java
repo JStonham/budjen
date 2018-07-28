@@ -72,6 +72,18 @@ public class TransactionTest {
     }
 
     @Test
+    public void givenEmptyDescription_returnsDescription() {
+        String description = makeEmptyDescription().getDescription();
+        assertEquals("",description);
+    }
+
+    private Transaction makeEmptyDescription() {
+        Transaction transaction = new Transaction();
+        transaction.setDescription("");
+        return transaction;
+    }
+
+    @Test
     public void givenNullDescription_returnsNullDescription() {
         String description = new Transaction().getDescription();
         assertEquals(null,description);
