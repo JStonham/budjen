@@ -38,6 +38,6 @@ public class Transaction {
         if (money <0) {
             return "You have spent £" + (money * -1);
         }
-        return "You have £" + money;
+            return "You have £" + money;
     }
 }

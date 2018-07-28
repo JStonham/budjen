@@ -45,4 +45,16 @@ public class TransactionTest {
         transaction.setMoney(-20);
         return transaction;
     }
+
+    @Test
+    public void givenZeroMoney_returnsZeroMonetaryValue() {
+        long money = new Transaction().getMoney();
+        assertEquals(0, money);
+    }
+
+    @Test
+    public void givenZeroMoney_returnsMonetaryDescription() {
+        String summary = new Transaction().getSummary();
+        assertEquals("No data.", summary);
+    }
 }
