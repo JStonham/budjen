@@ -27,4 +27,22 @@ public class TransactionTest {
         transaction.setMoney(10);
         return transaction;
     }
+
+    @Test
+    public void givenNegativeMoney_returnsNegativeMonetaryValue() {
+        long money = makeNegativeTransaction().getMoney();
+        assertEquals(-20, money);
+    }
+
+    @Test
+    public void givenNegativeMoney_returnsMonetaryDescription() {
+        String summary = makeNegativeTransaction().getSummary();
+        assertEquals("You have spent £20", summary);
+    }
+
+    private Transaction makeNegativeTransaction() {
+        Transaction transaction = new Transaction();
+        transaction.setMoney(-20);
+        return transaction;
+    }
 }
