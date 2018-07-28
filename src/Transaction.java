@@ -36,8 +36,8 @@ public class Transaction {
             return "No data.";
         }
         if (money <0) {
-            return "You have spent £20";
+            return "You have spent £" + (money * -1);
         }
-        return "You have £10";
+        return "You have £" + money;
     }
 }
