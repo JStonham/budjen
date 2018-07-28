@@ -1,6 +1,8 @@
 import com.sun.corba.se.spi.transport.TransportDefault;
 import org.junit.Test;
 
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 public class TransactionTest {
@@ -87,5 +89,21 @@ public class TransactionTest {
     public void givenNullDescription_returnsNullDescription() {
         String description = new Transaction().getDescription();
         assertEquals(null,description);
+    }
+
+    @Test
+    public void givenDate_returnDate() {
+        Date date = new Date();
+        Transaction transaction  = new Transaction();
+        transaction.setDate(date);
+        assertEquals(date, transaction.getDate());
+    }
+
+    @Test
+    public void givenNullDate_returnDateToday() {
+        Date today = new Date();
+        Transaction transaction = new Transaction();
+        transaction.setDate(null);
+        assertEquals(today, transaction.getDate());
     }
 }
