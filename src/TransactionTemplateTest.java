@@ -21,10 +21,4 @@ public class TransactionTest {
         transaction.setMoney(10);
         return transaction;
     }
-
-    @Test
-    public void givenPositiveMoney_returnsMonetaryValue() {
-        long money = makeTransaction() .getMoney();
-        assertEquals(10, money);
-    }
 }
