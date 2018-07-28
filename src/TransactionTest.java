@@ -16,15 +16,15 @@ public class TransactionTest {
         assertEquals("You have £10", summary);
     }
 
+    @Test
+    public void givenPositiveMoney_returnsMonetaryValue() {
+        long money = makeTransaction().getMoney();
+        assertEquals(10, money);
+    }
+
     private Transaction makeTransaction() {
         Transaction transaction = new Transaction();
         transaction.setMoney(10);
         return transaction;
-    }
-
-    @Test
-    public void givenPositiveMoney_returnsMonetaryValue() {
-        long money = makeTransaction() .getMoney();
-        assertEquals(10, money);
     }
 }
