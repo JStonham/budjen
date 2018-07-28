@@ -1,3 +1,4 @@
+import com.sun.corba.se.spi.transport.TransportDefault;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -56,5 +57,17 @@ public class TransactionTest {
     public void givenZeroMoney_returnsMonetaryDescription() {
         String summary = new Transaction().getSummary();
         assertEquals("No data.", summary);
+    }
+
+    @Test
+    public void givenDescription_returnsDescription() {
+        String description = makeDescription().getDescription();
+        assertEquals("Rent",description);
+    }
+
+    private Transaction makeDescription() {
+        Transaction transaction = new Transaction();
+        transaction.setDescription("Rent");
+        return transaction;
     }
 }
