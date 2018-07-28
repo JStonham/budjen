@@ -70,4 +70,10 @@ public class TransactionTest {
         transaction.setDescription("Rent");
         return transaction;
     }
+
+    @Test
+    public void givenNullDescription_returnsNullDescription() {
+        String description = new Transaction().getDescription();
+        assertEquals(null,description);
+    }
 }
