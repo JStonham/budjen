@@ -1,6 +1,7 @@
-import com.sun.corba.se.spi.transport.TransportDefault;
+import org.junit.Assert;
 import org.junit.Test;
 
+import java.time.Instant;
 import java.util.Date;
 
 import static org.junit.Assert.*;
@@ -105,5 +106,27 @@ public class TransactionTest {
         Transaction transaction = new Transaction();
         transaction.setDate(null);
         assertEquals(today, transaction.getDate());
+    }
+
+    /**
+     * Peter's test to highlight a bug when transaction date is set to null. Need to set the date during the setDate(null)
+     * method rather than during the getDate() method.
+     */
+    @Test
+    public void givenNoDate_assertTransactionDateIsTheDateTheTransactionWasCreated() {
+        Date transactionCreated = new Date();
+        Transaction transaction = makeTransaction();
+        transaction.setDate(null);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            Assert.fail("Interrupted");
+        }
+
+        // Make a Date which is just after the transaction date was set to null
+        Date justAfterTransactionDateSetToNull = new Date();
+        justAfterTransactionDateSetToNull.setTime(transactionCreated.getTime() + 10);
+        // Check that the Date of the transaction (when set to null) is the time the Date was set, not the time we get the Date.
+        assertTrue(transaction.getDate().before(justAfterTransactionDateSetToNull));
     }
 }

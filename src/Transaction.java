@@ -23,7 +23,12 @@ public class Transaction {
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        if (date == null) {
+            this.date = new Date();
+        }
+        else {
+            this.date = date;
+        }
     }
 
     public String getType() {
@@ -35,10 +40,7 @@ public class Transaction {
     }
 
     public Date getDate() {
-        if (date == null) {
-            return new Date();
-        }
-            return date;
+        return date;
     }
 
     public long getMoney() {
@@ -52,6 +54,6 @@ public class Transaction {
         if (money <0) {
             return "You have spent £" + (money * -1);
         }
-            return "You have £" + money;
+        return "You have £" + money;
     }
 }
