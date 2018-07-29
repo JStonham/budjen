@@ -35,7 +35,10 @@ public class Transaction {
     }
 
     public Date getDate() {
-        return date;
+        if (date == null) {
+            return new Date();
+        }
+            return date;
     }
 
     public long getMoney() {
