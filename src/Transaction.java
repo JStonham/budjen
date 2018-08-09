@@ -52,8 +52,18 @@ public class Transaction {
             return "No data.";
         }
         if (money <0) {
-            return "You have spent £" + (money * -1);
+            return "You have spent " + new Currency().formatPounds(-money);
         }
-        return "You have £" + money;
+        return "Your account has been credited with " + new Currency().formatPounds(money);
     }
 }
+
+// a % b = c
+//a = big number
+//b = divide by
+//c = the remainder
+//15 % 10 = 5
+//25 % 10 = 5
+//13 % 6 = 1
+//64 % 255 = 64
+//146 % 12 = 2

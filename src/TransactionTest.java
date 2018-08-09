@@ -17,36 +17,48 @@ public class TransactionTest {
     @Test
     public void givenMoney_returnsMonetaryDescription() {
         String summary = makeTransaction().getSummary();
-        assertEquals("You have £10", summary);
+        assertEquals("Your account has been credited with £10.00", summary);
     }
 
     @Test
     public void givenPositiveMoney_returnsMonetaryValue() {
         long money = makeTransaction().getMoney();
-        assertEquals(10, money);
+        assertEquals(1000, money);
     }
 
     private Transaction makeTransaction() {
         Transaction transaction = new Transaction();
-        transaction.setMoney(10);
+        transaction.setMoney(1000);
         return transaction;
     }
 
     @Test
     public void givenNegativeMoney_returnsNegativeMonetaryValue() {
         long money = makeNegativeTransaction().getMoney();
-        assertEquals(-20, money);
+        assertEquals(-2000 , money);
     }
 
     @Test
     public void givenNegativeMoney_returnsMonetaryDescription() {
         String summary = makeNegativeTransaction().getSummary();
-        assertEquals("You have spent £20", summary);
+        assertEquals("You have spent £20.00", summary);
     }
 
     private Transaction makeNegativeTransaction() {
         Transaction transaction = new Transaction();
-        transaction.setMoney(-20);
+        transaction.setMoney(-2000);
+        return transaction;
+    }
+
+    @Test
+    public void givenNegativeMoney_returnsMonetaryDescription2() {
+        String summary = makeNegativeTransaction2().getSummary();
+        assertEquals("You have spent £20.01", summary);
+    }
+
+    private Transaction makeNegativeTransaction2() {
+        Transaction transaction = new Transaction();
+        transaction.setMoney(-2001);
         return transaction;
     }
 
