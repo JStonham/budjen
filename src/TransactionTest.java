@@ -7,39 +7,29 @@ import static org.junit.Assert.*;
 public class TransactionTest {
 
     @Test
-    public void givenNoData_returnsNoDataMessage() {
+    public void givenNoDataOrMoney_returnsNoDataOrMoney() {
         String summary = new Transaction().getSummary();
+        long money = new Transaction().getMoney();
+        String description = new Transaction().getDescription();
         assertEquals("No data.", summary);
+        assertEquals(0, money);
+        assertNull(null,description);
     }
 
     @Test
-    public void givenMoney_returnsMonetaryDescription() {
+    public void givenMoney_returnsDescriptionAndValue() {
         String summary = makeTransaction().getSummary();
-        assertEquals("You have £10", summary);
-    }
-
-    @Test
-    public void givenPositiveMoney_returnsMonetaryValue() {
         long money = makeTransaction().getMoney();
+        assertEquals("You have £10", summary);
         assertEquals(10, money);
     }
 
     @Test
-    public void givenNegativeMoney_returnsNegativeMonetaryValue() {
-        long money = makeNegativeTransaction().getMoney();
-        assertEquals(-20, money);
-    }
-
-    @Test
-    public void givenNegativeMoney_returnsMonetaryDescription() {
+    public void givenNegativeMoney_returnsNegativeDescriptionAndValue() {
         String summary = makeNegativeTransaction().getSummary();
+        long money = makeNegativeTransaction().getMoney();
         assertEquals("You have spent £20", summary);
-    }
-
-    @Test
-    public void givenZeroMoney_returnsZeroMonetaryValue() {
-        long money = new Transaction().getMoney();
-        assertEquals(0, money);
+        assertEquals(-20, money);
     }
 
     @Test
@@ -49,27 +39,15 @@ public class TransactionTest {
     }
 
     @Test
-    public void givenNullDescription_returnsNullDescription() {
-        String description = new Transaction().getDescription();
-        assertNull(null,description);
-    }
-
-    @Test
     public void givenDate_returnDate() {
         Date date = new Date();
-        Transaction transaction  = new Transaction();
-        transaction.setDate(date);
-        assertEquals(date, transaction.getDate());
-    }
-
-    @Test
-    public void givenNullDate_returnDateToday() {
         Date today = new Date();
         Transaction transaction = new Transaction();
+        transaction.setDate(date);
         transaction.setDate(null);
+        assertEquals(date, transaction.getDate());
         assertEquals(today, transaction.getDate());
     }
-
 
     private Transaction makeTransaction() {
         Transaction transaction = new Transaction();
