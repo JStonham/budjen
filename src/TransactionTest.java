@@ -1,7 +1,5 @@
-import org.junit.Assert;
 import org.junit.Test;
 
-import java.time.Instant;
 import java.util.Date;
 
 import static org.junit.Assert.*;
@@ -53,7 +51,7 @@ public class TransactionTest {
     @Test
     public void givenNullDescription_returnsNullDescription() {
         String description = new Transaction().getDescription();
-        assertEquals(null,description);
+        assertNull(null,description);
     }
 
     @Test
