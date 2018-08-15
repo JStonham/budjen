@@ -20,16 +20,53 @@ public class TransactionTest {
     public void givenMoney_returnsDescriptionAndValue() {
         String summary = makeTransaction().getSummary();
         long money = makeTransaction().getMoney();
-        assertEquals("You have £10", summary);
-        assertEquals(10, money);
+        assertEquals("Your account has been credited with £10.00", summary);
+        assertEquals(1000, money);
+    }
+
+    @Test
+    public void givenPositiveMoney_returnsMonetaryValue() {
+        long money = makeTransaction().getMoney();
+        assertEquals(1000, money);
+    }
+
+
+    @Test
+    public void givenNegativeMoney_returnsNegativeMonetaryValue() {
+        long money = makeNegativeTransaction().getMoney();
+        assertEquals(-2000 , money);
     }
 
     @Test
     public void givenNegativeMoney_returnsNegativeDescriptionAndValue() {
         String summary = makeNegativeTransaction().getSummary();
         long money = makeNegativeTransaction().getMoney();
-        assertEquals("You have spent £20", summary);
-        assertEquals(-20, money);
+        assertEquals("You have spent £20.00", summary);
+        assertEquals(-2000, money);
+    }
+
+    @Test
+    public void givenNegativeMoney_returnsMonetaryDescription2() {
+        String summary = makeNegativeTransaction2().getSummary();
+        assertEquals("You have spent £20.01", summary);
+    }
+
+    private Transaction makeNegativeTransaction2() {
+        Transaction transaction = new Transaction();
+        transaction.setMoney(-2001);
+        return transaction;
+    }
+
+    @Test
+    public void givenZeroMoney_returnsZeroMonetaryValue() {
+        long money = new Transaction().getMoney();
+        assertEquals(0, money);
+    }
+
+    @Test
+    public void givenZeroMoney_returnsMonetaryDescription() {
+        String summary = new Transaction().getSummary();
+        assertEquals("No data.", summary);
     }
 
     @Test
@@ -51,13 +88,13 @@ public class TransactionTest {
 
     private Transaction makeTransaction() {
         Transaction transaction = new Transaction();
-        transaction.setMoney(10);
+        transaction.setMoney(1000);
         return transaction;
     }
 
     private Transaction makeNegativeTransaction() {
         Transaction transaction = new Transaction();
-        transaction.setMoney(-20);
+        transaction.setMoney(-2000);
         return transaction;
     }
 
