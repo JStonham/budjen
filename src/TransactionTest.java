@@ -25,48 +25,13 @@ public class TransactionTest {
     }
 
     @Test
-    public void givenPositiveMoney_returnsMonetaryValue() {
-        long money = makeTransaction().getMoney();
-        assertEquals(1000, money);
-    }
-
-
-    @Test
-    public void givenNegativeMoney_returnsNegativeMonetaryValue() {
-        long money = makeNegativeTransaction().getMoney();
-        assertEquals(-2000 , money);
-    }
-
-    @Test
     public void givenNegativeMoney_returnsNegativeDescriptionAndValue() {
         String summary = makeNegativeTransaction().getSummary();
+        String summary2 = makeNegativeTransaction2().getSummary();
         long money = makeNegativeTransaction().getMoney();
         assertEquals("You have spent £20.00", summary);
+        assertEquals("You have spent £20.01", summary2);
         assertEquals(-2000, money);
-    }
-
-    @Test
-    public void givenNegativeMoney_returnsMonetaryDescription2() {
-        String summary = makeNegativeTransaction2().getSummary();
-        assertEquals("You have spent £20.01", summary);
-    }
-
-    private Transaction makeNegativeTransaction2() {
-        Transaction transaction = new Transaction();
-        transaction.setMoney(-2001);
-        return transaction;
-    }
-
-    @Test
-    public void givenZeroMoney_returnsZeroMonetaryValue() {
-        long money = new Transaction().getMoney();
-        assertEquals(0, money);
-    }
-
-    @Test
-    public void givenZeroMoney_returnsMonetaryDescription() {
-        String summary = new Transaction().getSummary();
-        assertEquals("No data.", summary);
     }
 
     @Test
@@ -101,6 +66,12 @@ public class TransactionTest {
     private Transaction makeDescription() {
         Transaction transaction = new Transaction();
         transaction.setDescription("Rent");
+        return transaction;
+    }
+
+    private Transaction makeNegativeTransaction2() {
+        Transaction transaction = new Transaction();
+        transaction.setMoney(-2001);
         return transaction;
     }
 }
