@@ -8,7 +8,7 @@ public class Transaction {
     private String type;
     private String description;
     private long money;
-    private Date date;
+    private Date date = new Date();
 
     public void setType(String type) {
         this.type = type;
@@ -23,10 +23,7 @@ public class Transaction {
     }
 
     public void setDate(Date date) {
-        if (date == null) {
-            this.date = new Date();
-        }
-        else {
+        if (date != null) {
             this.date = date;
         }
     }
