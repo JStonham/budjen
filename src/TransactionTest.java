@@ -13,7 +13,7 @@ public class TransactionTest {
         String description = new Transaction().getDescription();
         assertEquals("No data.", summary);
         assertEquals(0, money);
-        assertNull(null,description);
+        assertNull(description);
     }
 
     @Test
