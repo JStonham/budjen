@@ -54,13 +54,3 @@ public class Transaction {
         return "Your account has been credited with " + new Currency().formatPounds(money);
     }
 }
-
-// a % b = c
-//a = big number
-//b = divide by
-//c = the remainder
-//15 % 10 = 5
-//25 % 10 = 5
-//13 % 6 = 1
-//64 % 255 = 64
-//146 % 12 = 2
