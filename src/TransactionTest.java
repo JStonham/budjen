@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import static org.junit.Assert.*;
@@ -8,9 +10,10 @@ public class TransactionTest {
 
     @Test
     public void givenNoDataOrMoney_returnsNoDataOrMoney() {
-        String summary = new Transaction().getSummary();
-        long money = new Transaction().getMoney();
-        String description = new Transaction().getDescription();
+        Transaction transaction = new Transaction();
+        String summary = transaction.getSummary();
+        long money = transaction.getMoney();
+        String description = transaction.getDescription();
         assertEquals("No data.", summary);
         assertEquals(0, money);
         assertNull(description);
@@ -25,13 +28,17 @@ public class TransactionTest {
     }
 
     @Test
-    public void givenNegativeMoney_returnsNegativeDescriptionAndValue() {
-        String summary = makeNegativeTransaction().getSummary();
-        String summary2 = makeNegativeTransaction2().getSummary();
-        long money = makeNegativeTransaction().getMoney();
-        assertEquals("You have spent £20.00", summary);
-        assertEquals("You have spent £20.01", summary2);
-        assertEquals(-2000, money);
+    public void givenRoundNegativeMoney_returnsRoundDetails() {
+        Transaction transaction = makeNegativeTransaction();
+        assertEquals("You have spent £20.00", transaction.getSummary());
+        assertEquals(-2000, transaction.getMoney());
+    }
+
+    @Test
+    public void givenDecimalNegativeMoney_returnsDecimalDetails() {
+        Transaction transaction = makeNegativeTransaction2();
+        assertEquals("You have spent £20.01", transaction.getSummary());
+        assertEquals(-2001, transaction.getMoney());
     }
 
     @Test
@@ -41,14 +48,27 @@ public class TransactionTest {
     }
 
     @Test
-    public void givenDate_returnDate() {
-        Date date = new Date();
-        Date today = new Date();
+    public void givenNoDateSet_shouldUseNowAsDefault() {
+        Date before = new Date();
+        Date transactionDate = new Transaction().getDate();
+        Date after = new Date();
+
+        //The test-times surrounding the transaction creation should wrap the transaction date.
+        //Almost all computers are so fast that the dates are going to be equal (up to millisecond precision), however
+        //we cannot assume that.
+        assertTrue(before.equals(transactionDate) || before.before(transactionDate));
+        assertTrue(after.equals(transactionDate) || after.after(transactionDate));
+    }
+
+    @Test
+    public void givenNullDate_shouldNotAffectTheDateBeingSet() {
+        Date tenSecondsAgo = Date.from(Instant.now().minus(10, ChronoUnit.SECONDS));
         Transaction transaction = new Transaction();
-        transaction.setDate(date);
+        transaction.setDate(tenSecondsAgo);
+        assertSame(tenSecondsAgo, transaction.getDate());
+
         transaction.setDate(null);
-        assertEquals(date, transaction.getDate());
-        assertEquals(today, transaction.getDate());
+        assertSame(tenSecondsAgo, transaction.getDate()); //Null didn't change anything
     }
 
     private Transaction makeTransaction() {
