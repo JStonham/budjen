@@ -27,7 +27,7 @@
 1. Each transaction will include a transaction type, a transaction description and a number of money in pounds sterling.
 1. The transaction type will be in the form of a credit or an expenditure.
 1. The transaction description will be formed of a list of credit and expenditure options.
-1. All money entered by the user into the purse will be in positive or non-negative values.
+1. All money entered by the user into the purse will be in non-negative values.
 1. The application will display credit and expenditure in non-negative values.
 
 ## 1st Sprint - created 23/08/2018
