@@ -11,27 +11,27 @@ import static org.junit.Assert.assertEquals;
 //2. GREEN. Write as little production code as possible to make your test pass.
 //3. REFACTOR. Clean up the code. (Not allowed to change the behaviour of the production code).
 
-public class BankTest {
+public class PurseTest {
     public static final long BIG_NUMBER = 64000000000l;
-    private Bank bank = new Bank();
+    private Purse target = new Purse();
 
     @Test
     public void hasZeroBalanceByDefault() {
-        assertEquals(0, bank.getBalance());
+        assertEquals(0, target.getBalance());
     }
 
     @Test
     public void canHandleMultipleTransactions() {
-        bank.addTransaction(makeTransaction(128));
-        bank.addTransaction(makeTransaction(-256));
-        bank.addTransaction(makeTransaction(64));
-        assertEquals(-64, bank.getBalance());
+        target.addTransaction(makeTransaction(128));
+        target.addTransaction(makeTransaction(-256));
+        target.addTransaction(makeTransaction(64));
+        assertEquals(-64, target.getBalance());
     }
 
     @Test
     public void canHandleVeryLargeAmountsOfMoney() {
-        bank.addTransaction(makeTransaction(BIG_NUMBER));
-        assertEquals(BIG_NUMBER, bank.getBalance());
+        target.addTransaction(makeTransaction(BIG_NUMBER));
+        assertEquals(BIG_NUMBER, target.getBalance());
     }
 
     private Transaction makeTransaction(long money) {

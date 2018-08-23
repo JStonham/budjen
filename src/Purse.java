@@ -1,4 +1,4 @@
-public class Bank {
+public class Purse {
 
     private long balance = 0;
 
