@@ -76,32 +76,32 @@ public class TransactionTest {
     @Test
     public void givenMoney_returnsTypeCredit() {
         TransactionType type = makeTransaction().getType();
-        assertEquals("CREDIT", type);
+        assertEquals(TransactionType.CREDIT, type);
     }
 
     @Test
     public void givenRoundNegativeMoney_returnsTypeDebit() {
         TransactionType type = makeNegativeTransaction().getType();
-        assertEquals("DEBIT", type);
+        assertEquals(TransactionType.DEBIT, type);
     }
 
     @Test
     public void givenDecimalNegativeMoney_returnsTypeDebit() {
         TransactionType type = makeNegativeTransaction2().getType();
-        assertEquals("DEBIT", type);
+        assertEquals(TransactionType.DEBIT, type);
     }
 
     private Transaction makeTransaction() {
         Transaction transaction = new Transaction();
         transaction.setMoney(1000);
-        transaction.setType(TransactionType.DEBIT);
+        transaction.setType(TransactionType.CREDIT);
         return transaction;
     }
 
     private Transaction makeNegativeTransaction() {
         Transaction transaction = new Transaction();
         transaction.setMoney(-2000);
-        transaction.setType(TransactionType.CREDIT);
+        transaction.setType(TransactionType.DEBIT);
         return transaction;
     }
 
@@ -114,7 +114,7 @@ public class TransactionTest {
     private Transaction makeNegativeTransaction2() {
         Transaction transaction = new Transaction();
         transaction.setMoney(-2001);
-        transaction.setType(TransactionType.CREDIT);
+        transaction.setType(TransactionType.DEBIT);
         return transaction;
     }
 }
