@@ -73,15 +73,35 @@ public class TransactionTest {
         assertSame(tenSecondsAgo, transaction.getDate()); //Null didn't change anything
     }
 
+    @Test
+    public void givenMoney_returnsTypeCredit() {
+        TransactionType type = makeTransaction().getType();
+        assertEquals("CREDIT", type);
+    }
+
+    @Test
+    public void givenRoundNegativeMoney_returnsTypeDebit() {
+        TransactionType type = makeNegativeTransaction().getType();
+        assertEquals("DEBIT", type);
+    }
+
+    @Test
+    public void givenDecimalNegativeMoney_returnsTypeDebit() {
+        TransactionType type = makeNegativeTransaction2().getType();
+        assertEquals("DEBIT", type);
+    }
+
     private Transaction makeTransaction() {
         Transaction transaction = new Transaction();
         transaction.setMoney(1000);
+        transaction.setType(TransactionType.DEBIT);
         return transaction;
     }
 
     private Transaction makeNegativeTransaction() {
         Transaction transaction = new Transaction();
         transaction.setMoney(-2000);
+        transaction.setType(TransactionType.CREDIT);
         return transaction;
     }
 
@@ -94,6 +114,7 @@ public class TransactionTest {
     private Transaction makeNegativeTransaction2() {
         Transaction transaction = new Transaction();
         transaction.setMoney(-2001);
+        transaction.setType(TransactionType.CREDIT);
         return transaction;
     }
 }
