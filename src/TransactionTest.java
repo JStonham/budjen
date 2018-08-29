@@ -14,9 +14,11 @@ public class TransactionTest {
         String summary = transaction.getSummary();
         long money = transaction.getMoney();
         String description = transaction.getDescription();
+        TransactionType type = transaction.getType();
         assertEquals("No data.", summary);
         assertEquals(0, money);
         assertNull(description);
+        assertNull(type);
     }
 
     @Test
