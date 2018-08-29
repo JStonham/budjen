@@ -1,16 +1,12 @@
 import java.util.Date;
 
-/**
- * Each transaction will include a transaction type,
- * a transation reason and a number of money in pounds sterling.
- */
 public class Transaction {
-    private String type;
+    private TransactionType type;
     private String description;
     private long money;
     private Date date = new Date();
 
-    public void setType(String type) {
+    public void setType(TransactionType type) {
         this.type = type;
     }
 
@@ -28,7 +24,7 @@ public class Transaction {
         }
     }
 
-    public String getType() {
+    public TransactionType getType() {
         return type;
     }
 
