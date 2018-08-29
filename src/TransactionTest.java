@@ -22,11 +22,13 @@ public class TransactionTest {
     }
 
     @Test
-    public void givenMoney_returnsDescriptionAndValue() {
+    public void givenMoney_returnsDescriptionAndValueAndType() {
         String summary = makeTransaction().getSummary();
         long money = makeTransaction().getMoney();
+        TransactionType type = makeTransaction().getType();
         assertEquals("Your account has been credited with £10.00", summary);
         assertEquals(1000, money);
+        assertEquals(TransactionType.CREDIT, type);
     }
 
     @Test
@@ -34,6 +36,7 @@ public class TransactionTest {
         Transaction transaction = makeNegativeTransaction();
         assertEquals("You have spent £20.00", transaction.getSummary());
         assertEquals(-2000, transaction.getMoney());
+        assertEquals(TransactionType.DEBIT, transaction.getType());
     }
 
     @Test
@@ -41,6 +44,7 @@ public class TransactionTest {
         Transaction transaction = makeNegativeTransaction2();
         assertEquals("You have spent £20.01", transaction.getSummary());
         assertEquals(-2001, transaction.getMoney());
+        assertEquals(TransactionType.DEBIT, transaction.getType());
     }
 
     @Test
@@ -71,24 +75,6 @@ public class TransactionTest {
 
         transaction.setDate(null);
         assertSame(tenSecondsAgo, transaction.getDate()); //Null didn't change anything
-    }
-
-    @Test
-    public void givenMoney_returnsTypeCredit() {
-        TransactionType type = makeTransaction().getType();
-        assertEquals(TransactionType.CREDIT, type);
-    }
-
-    @Test
-    public void givenRoundNegativeMoney_returnsTypeDebit() {
-        TransactionType type = makeNegativeTransaction().getType();
-        assertEquals(TransactionType.DEBIT, type);
-    }
-
-    @Test
-    public void givenDecimalNegativeMoney_returnsTypeDebit() {
-        TransactionType type = makeNegativeTransaction2().getType();
-        assertEquals(TransactionType.DEBIT, type);
     }
 
     private Transaction makeTransaction() {
