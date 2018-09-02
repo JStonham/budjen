@@ -1,12 +1,22 @@
 public class TransactionData {
 
     private final Object[] transactionData = new Object[] {
-            new Object[] { TransactionType.CREDIT, "Dress Refund", 3000 },
+            new Object[] { TransactionType.CREDIT, "Dress Refund", 2999 },
             new Object[] { TransactionType.CREDIT, "Pocket Money", 250 },
             new Object[] { TransactionType.CREDIT, "Lottery winnings", 5600000 },
-            new Object[] { TransactionType.DEBIT, "Train Ticket", -12300 },
+            new Object[] { TransactionType.CREDIT, "TV Appearance", 100000 },
+            new Object[] { TransactionType.CREDIT, "Book Deal", 500000 },
+            new Object[] { TransactionType.CREDIT, "Poker winnings", 80000 },
+            new Object[] { TransactionType.CREDIT, "Paper Round", 2300 },
+            new Object[] { TransactionType.CREDIT, "Let flat", 420000 },
+            new Object[] { TransactionType.DEBIT, "Lottery Ticket", -300 },
+            new Object[] { TransactionType.DEBIT, "Train Ticket", -12330 },
             new Object[] { TransactionType.DEBIT, "Dog", -700000 },
-            new Object[] { TransactionType.DEBIT, "Small Yacht", -4500000 }
+            new Object[] { TransactionType.DEBIT, "Dog toys", -1549 },
+            new Object[] { TransactionType.DEBIT, "Blue Audi", -4000000 },
+            new Object[] { TransactionType.DEBIT, "Small Yacht", -5900099 },
+            new Object[] { TransactionType.DEBIT, "Plastic Surgery", -2500000 },
+            new Object[] { TransactionType.DEBIT, "Skiing holiday", -510000 }
 
     };
 
