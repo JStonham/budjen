@@ -1,5 +1,28 @@
 public class TransactionData {
 
+    private final Object[] transactionData = new Object[] {
+            new Object[] { TransactionType.CREDIT, "Dress Refund", 3000 },
+            new Object[] { TransactionType.CREDIT, "Pocket Money", 250 },
+            new Object[] { TransactionType.CREDIT, "Lottery winnings", 5600000 },
+            new Object[] { TransactionType.DEBIT, "Train Ticket", -12300 },
+            new Object[] { TransactionType.DEBIT, "Dog", -700000 },
+            new Object[] { TransactionType.DEBIT, "Small Yacht", -4500000 }
+
+    };
+
+    private Transaction[] seedTransactions() {
+        Transaction[] transactions = new Transaction[transactionData.length];
+        for (int i = 0; i < transactionData.length; i++) {
+            Object[] seedData = (Object[]) transactionData[i];
+            Transaction transaction = new Transaction();
+            transaction.setType((TransactionType) seedData[0]);
+            transaction.setDescription((String) seedData[1]);
+            transaction.setMoney((Long) seedData[2]);
+            transactions[i] = transaction;
+        }
+        return transactions;
+    }
+
     private Transaction returnedDressRefund() {
         Transaction transaction = new Transaction();
         transaction.setType(TransactionType.CREDIT);
