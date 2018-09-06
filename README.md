@@ -27,5 +27,18 @@
 1. Each transaction will include a transaction type, a transaction description and a number of money in pounds sterling.
 1. The transaction type will be in the form of a credit or an expenditure.
 1. The transaction description will be formed of a list of credit and expenditure options.
-1. All money entered by the user into the purse will be in positive or non-negative values.
+1. All money entered by the user into the purse will be in non-negative values.
 1. The application will display credit and expenditure in non-negative values.
+
+## 1st Sprint - created 23/08/2018
+1. The application should show the user what they are spending their money on.
+1. The application should deal with money in pounds sterling.
+1. The application should deal with time using the absolute calendar month and year.
+1. The application should use the English language for input and output.
+1. The application should be built in the Java 8 programming language.
+
+## 2nd Sprint - created
+transaction type field with enum for credit and debit and write tests
+rename bank to purse
+generate seed data - make lots of transactions with type, description and money
+
