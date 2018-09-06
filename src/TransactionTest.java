@@ -50,7 +50,7 @@ public class TransactionTest {
     @Test
     public void givenDescription_returnsDescription() {
         String description = makeDescription().getDescription();
-        assertEquals("Rent",description);
+        assertEquals("Rent", description);
     }
 
     @Test

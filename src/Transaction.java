@@ -44,7 +44,7 @@ public class Transaction {
         if (money == 0) {
             return "No data.";
         }
-        if (money <0) {
+        if (money < 0) {
             return "You have spent " + new Currency().formatPounds(-money);
         }
         return "Your account has been credited with " + new Currency().formatPounds(money);
