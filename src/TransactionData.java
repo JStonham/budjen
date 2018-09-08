@@ -1,4 +1,5 @@
 public class TransactionData {
+
     public Transaction[] getTransactionData() {
         return new Transaction[]{
                 credit("Dress Refund", 2999),
@@ -9,6 +10,7 @@ public class TransactionData {
                 credit("Poker winnings", 80000),
                 credit("Paper Round", 2300),
                 credit("Let flat", 420000),
+
                 debit("Lottery Ticket", -300),
                 debit("Train Ticket", -12330),
                 debit("Dog", -700000),

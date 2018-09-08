@@ -3,7 +3,9 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class PurseTest {
+
     public static final long BIG_NUMBER = 64000000000l;
+
     private Purse target = new Purse();
 
     @Test

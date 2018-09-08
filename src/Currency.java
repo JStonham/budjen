@@ -1,4 +1,5 @@
 public class Currency {
+
     public String formatPounds(final long i) {
         if (i == 0) {
             return "0";
