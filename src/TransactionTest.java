@@ -11,24 +11,18 @@ public class TransactionTest {
     @Test
     public void givenNoDataOrMoney_returnsNoDataOrMoney() {
         final Transaction transaction = new Transaction();
-        final String summary = transaction.getSummary();
-        final long money = transaction.getMoney();
-        final String description = transaction.getDescription();
-        final TransactionType type = transaction.getType();
-        assertEquals("No data.", summary);
-        assertEquals(0, money);
-        assertNull(description);
-        assertNull(type);
+        assertEquals("No data.", transaction.getSummary());
+        assertEquals(0, transaction.getMoney());
+        assertNull(transaction.getDescription());
+        assertNull(transaction.getType());
     }
 
     @Test
     public void givenMoney_returnsDescriptionAndValueAndType() {
-        final String summary = makeTransaction().getSummary();
-        final long money = makeTransaction().getMoney();
-        final TransactionType type = makeTransaction().getType();
-        assertEquals("Your account has been credited with £10.00", summary);
-        assertEquals(1000, money);
-        assertEquals(TransactionType.CREDIT, type);
+        final Transaction transaction = makeTransaction();
+        assertEquals("Your account has been credited with £10.00", transaction.getSummary());
+        assertEquals(1000, transaction.getMoney());
+        assertEquals(TransactionType.CREDIT, transaction.getType());
     }
 
     @Test
@@ -49,8 +43,7 @@ public class TransactionTest {
 
     @Test
     public void givenDescription_returnsDescription() {
-        final String description = makeDescription().getDescription();
-        assertEquals("Rent", description);
+        assertEquals("Rent", makeDescription().getDescription());
     }
 
     @Test

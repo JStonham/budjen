@@ -4,9 +4,11 @@ import static org.junit.Assert.*;
 
 public class TransactionDataTest {
 
+    private TransactionData target = new TransactionData();
+
     @Test
     public void seedsData() {
-        final Transaction[] transactions = new TransactionData().getTransactionData();
+        final Transaction[] transactions = target.getTransactionData();
         assertEquals(16, transactions.length);
         for (final Transaction transaction : transactions) {
             assertNotEquals(0, transaction.getMoney());
