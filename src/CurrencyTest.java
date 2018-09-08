@@ -19,7 +19,7 @@ public class CurrencyTest {
         runTest("£0.42", 42);
     }
 
-    private void runTest(String s, int i) {
+    private void runTest(final String s, final int i) {
         assertEquals(s, new Currency().formatPounds(i));
     }
 

@@ -25,8 +25,8 @@ public class PurseTest {
         assertEquals(BIG_NUMBER, target.getBalance());
     }
 
-    private Transaction makeTransaction(long money) {
-        Transaction transaction = new Transaction();
+    private Transaction makeTransaction(final long money) {
+        final Transaction transaction = new Transaction();
         transaction.setMoney(money);
         return transaction;
     }

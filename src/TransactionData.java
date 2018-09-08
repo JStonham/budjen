@@ -21,18 +21,16 @@ public class TransactionData {
 
     }
 
-    private Transaction credit(String description, long money) {
+    private Transaction credit(final String description, final long money) {
         return makeTransaction(description, money, TransactionType.CREDIT);
     }
 
-    private Transaction debit(String description, long money) {
+    private Transaction debit(final String description, final long money) {
         return makeTransaction(description, money, TransactionType.DEBIT);
     }
 
-    private Transaction makeTransaction(String description,
-                                        long money,
-                                        TransactionType type) {
-        Transaction transaction = new Transaction();
+    private Transaction makeTransaction(final String description, final long money, final TransactionType type) {
+        final Transaction transaction = new Transaction();
         transaction.setType(type);
         transaction.setDescription(description);
         transaction.setMoney(money);

@@ -10,11 +10,11 @@ public class TransactionTest {
 
     @Test
     public void givenNoDataOrMoney_returnsNoDataOrMoney() {
-        Transaction transaction = new Transaction();
-        String summary = transaction.getSummary();
-        long money = transaction.getMoney();
-        String description = transaction.getDescription();
-        TransactionType type = transaction.getType();
+        final Transaction transaction = new Transaction();
+        final String summary = transaction.getSummary();
+        final long money = transaction.getMoney();
+        final String description = transaction.getDescription();
+        final TransactionType type = transaction.getType();
         assertEquals("No data.", summary);
         assertEquals(0, money);
         assertNull(description);
@@ -23,9 +23,9 @@ public class TransactionTest {
 
     @Test
     public void givenMoney_returnsDescriptionAndValueAndType() {
-        String summary = makeTransaction().getSummary();
-        long money = makeTransaction().getMoney();
-        TransactionType type = makeTransaction().getType();
+        final String summary = makeTransaction().getSummary();
+        final long money = makeTransaction().getMoney();
+        final TransactionType type = makeTransaction().getType();
         assertEquals("Your account has been credited with £10.00", summary);
         assertEquals(1000, money);
         assertEquals(TransactionType.CREDIT, type);
@@ -33,7 +33,7 @@ public class TransactionTest {
 
     @Test
     public void givenRoundNegativeMoney_returnsRoundDetails() {
-        Transaction transaction = makeNegativeTransaction();
+        final Transaction transaction = makeNegativeTransaction();
         assertEquals("You have spent £20.00", transaction.getSummary());
         assertEquals(-2000, transaction.getMoney());
         assertEquals(TransactionType.DEBIT, transaction.getType());
@@ -41,7 +41,7 @@ public class TransactionTest {
 
     @Test
     public void givenDecimalNegativeMoney_returnsDecimalDetails() {
-        Transaction transaction = makeNegativeTransaction2();
+        final Transaction transaction = makeNegativeTransaction2();
         assertEquals("You have spent £20.01", transaction.getSummary());
         assertEquals(-2001, transaction.getMoney());
         assertEquals(TransactionType.DEBIT, transaction.getType());
@@ -49,15 +49,15 @@ public class TransactionTest {
 
     @Test
     public void givenDescription_returnsDescription() {
-        String description = makeDescription().getDescription();
+        final String description = makeDescription().getDescription();
         assertEquals("Rent", description);
     }
 
     @Test
     public void givenNoDateSet_shouldUseNowAsDefault() {
-        Date before = new Date();
-        Date transactionDate = new Transaction().getDate();
-        Date after = new Date();
+        final Date before = new Date();
+        final Date transactionDate = new Transaction().getDate();
+        final Date after = new Date();
 
         //The test-times surrounding the transaction creation should wrap the transaction date.
         //Almost all computers are so fast that the dates are going to be equal (up to millisecond precision), however
@@ -68,8 +68,8 @@ public class TransactionTest {
 
     @Test
     public void givenNullDate_shouldNotAffectTheDateBeingSet() {
-        Date tenSecondsAgo = Date.from(Instant.now().minus(10, ChronoUnit.SECONDS));
-        Transaction transaction = new Transaction();
+        final Date tenSecondsAgo = Date.from(Instant.now().minus(10, ChronoUnit.SECONDS));
+        final Transaction transaction = new Transaction();
         transaction.setDate(tenSecondsAgo);
         assertSame(tenSecondsAgo, transaction.getDate());
 
@@ -78,27 +78,27 @@ public class TransactionTest {
     }
 
     private Transaction makeTransaction() {
-        Transaction transaction = new Transaction();
+        final Transaction transaction = new Transaction();
         transaction.setMoney(1000);
         transaction.setType(TransactionType.CREDIT);
         return transaction;
     }
 
     private Transaction makeNegativeTransaction() {
-        Transaction transaction = new Transaction();
+        final Transaction transaction = new Transaction();
         transaction.setMoney(-2000);
         transaction.setType(TransactionType.DEBIT);
         return transaction;
     }
 
     private Transaction makeDescription() {
-        Transaction transaction = new Transaction();
+        final Transaction transaction = new Transaction();
         transaction.setDescription("Rent");
         return transaction;
     }
 
     private Transaction makeNegativeTransaction2() {
-        Transaction transaction = new Transaction();
+        final Transaction transaction = new Transaction();
         transaction.setMoney(-2001);
         transaction.setType(TransactionType.DEBIT);
         return transaction;
