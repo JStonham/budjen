@@ -37,8 +37,20 @@
 1. The application should use the English language for input and output.
 1. The application should be built in the Java 8 programming language.
 
-## 2nd Sprint - created
+## 2nd Sprint - created 06/09/2018
 transaction type field with enum for credit and debit and write tests
 rename bank to purse
 generate seed data - make lots of transactions with type, description and money
 
+## 3rd Sprint
+make seed data have different dates (TEST!!)
+create a main Application class that when run will print a list of all the transactions in chronological order (TEST!)
+
+This is entire Budjen class with main method. Cannot change this!
+```java
+public class Budjen {
+    public static void main(String[] args) {
+        new Application().start();
+    }
+}
+```
