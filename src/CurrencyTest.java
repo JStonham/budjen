@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 public class CurrencyTest {
 
+    private Currency target = new Currency();
+
     @Test
     public void givenZero_givesZero() {
         runTest("0", 0);
@@ -19,8 +21,8 @@ public class CurrencyTest {
         runTest("£0.42", 42);
     }
 
-    private void runTest(String s, int i) {
-        assertEquals(s, new Currency().formatPounds(i));
+    private void runTest(final String s, final int i) {
+        assertEquals(s, target.formatPounds(i));
     }
 
 }

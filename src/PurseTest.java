@@ -3,7 +3,9 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class PurseTest {
-    public static final long BIG_NUMBER = 64000000000l;
+
+    private static final long BIG_NUMBER = 64_000_000_000L;
+
     private Purse target = new Purse();
 
     @Test
@@ -25,8 +27,8 @@ public class PurseTest {
         assertEquals(BIG_NUMBER, target.getBalance());
     }
 
-    private Transaction makeTransaction(long money) {
-        Transaction transaction = new Transaction();
+    private Transaction makeTransaction(final long money) {
+        final Transaction transaction = new Transaction();
         transaction.setMoney(money);
         return transaction;
     }

@@ -1,6 +1,7 @@
 import java.util.Date;
 
 public class Transaction {
+
     private TransactionType type;
     private String description;
     private long money;
