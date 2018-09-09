@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 public class PurseTest {
 
-    public static final long BIG_NUMBER = 64_000_000_000L;
+    private static final long BIG_NUMBER = 64_000_000_000L;
 
     private Purse target = new Purse();
 
