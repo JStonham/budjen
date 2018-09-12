@@ -33,12 +33,26 @@ public class Application {
     }
 
     public void print(Transaction transaction) {
-        System.out.println(transaction.getType()+", "+transaction.getDescription()+", "+transaction.getMoney()+", "+formatDate(transaction.getDate()));
+        System.out.println(transaction.getType()+", "+transaction.getDescription()+", "+formatPounds(transaction.getMoney())+", "+formatDate(transaction.getDate()));
     }
 
     private String formatDate(Date date) {
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         return simpleDateFormat.format(date);
+    }
+
+    public String formatPounds(long money) {
+        if (money == 0) {
+            return "0";
+        }
+        if (money <0) {
+            final long remainder = (money % 100) * -1;
+            final String pence = remainder < 10 ? "0" + remainder : "" + remainder;
+            return "£" + ((money / 100) * -1) + "." + pence;
+        }
+        final long remainder = money % 100;
+        final String pence = remainder < 10 ? "0" + remainder : "" + remainder;
+        return "£" + (money / 100) + "." + pence;
     }
 }
