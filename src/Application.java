@@ -1,7 +1,10 @@
 import sun.java2d.loops.TransformBlit;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class Application {
@@ -30,7 +33,12 @@ public class Application {
     }
 
     public void print(Transaction transaction) {
-        System.out.println(transaction.getType()+", "+transaction.getDescription()+", "+transaction.getMoney()+", "+transaction.getDate());
+        System.out.println(transaction.getType()+", "+transaction.getDescription()+", "+transaction.getMoney()+", "+formatDate(transaction.getDate()));
     }
 
+    private String formatDate(Date date) {
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return simpleDateFormat.format(date);
+    }
 }
