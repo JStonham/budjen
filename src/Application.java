@@ -1,3 +1,5 @@
+import sun.java2d.loops.TransformBlit;
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -6,7 +8,10 @@ public class Application {
 
     public void start() {
         Transaction[] transactions = getData();
-        System.out.println();
+        Transaction[] orderedTransactions = orderTransactions(transactions);
+        for (Transaction transaction : orderedTransactions) {
+            print(transaction);
+        }
     }
 
     public Transaction[] getData() {
@@ -24,8 +29,8 @@ public class Application {
         return transactionList.toArray(new Transaction[unorderedTransactions.length]);
     }
 
-    public void print() {
-
+    public void print(Transaction transaction) {
+        System.out.println(transaction.getType()+", "+transaction.getDescription()+", "+transaction.getMoney()+", "+transaction.getDate());
     }
 
 }
