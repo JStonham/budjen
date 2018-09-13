@@ -3,8 +3,8 @@ import org.junit.Test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class ApplicationTest {
@@ -12,30 +12,13 @@ public class ApplicationTest {
     private Application target = new Application();
 
     @Test
-    public void returnsData() {
-        final Transaction[] transactions = target.getData();
-        assertEquals(16, transactions.length);
-        for (final Transaction transaction : transactions) {
-            assertNotEquals(0, transaction.getMoney());
-            assertNotNull(transaction.getDescription());
-            assertNotEquals("", transaction.getDescription());
-            assertNotNull(transaction.getType());
-            assertNotNull(transaction.getDate());
-        }
-    }
-
-    @Test
     public void ordersTransactions() {
         final Transaction yesterday = makeTransaction("2018-09-10");
         final Transaction today = makeTransaction("2018-09-11");
         final Transaction tomorrow = makeTransaction("2018-09-12");
-        final Transaction[] unorderedTransactions = new Transaction[] {yesterday, tomorrow, today};
-        final Transaction[] transactions = target.orderTransactions(unorderedTransactions);
-        assertNotNull(transactions);
-        assertEquals(3, transactions.length);
-        assertEquals(yesterday,transactions[0]);
-        assertEquals(today,transactions[1]);
-        assertEquals(tomorrow,transactions[2]);
+        final Transaction[] unorderedTransactions = {yesterday, tomorrow, today};
+        final Transaction[] expecteds = {yesterday, today, tomorrow};
+        assertArrayEquals(expecteds, target.orderTransactions(unorderedTransactions));
     }
 
     private Transaction makeTransaction(String date) {
