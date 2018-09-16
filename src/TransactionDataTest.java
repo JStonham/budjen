@@ -15,6 +15,7 @@ public class TransactionDataTest {
             assertNotNull(transaction.getDescription());
             assertNotEquals("", transaction.getDescription());
             assertNotNull(transaction.getType());
+            assertNotNull(transaction.getDate());
         }
     }
 }
