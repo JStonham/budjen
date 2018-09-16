@@ -21,7 +21,11 @@ public class Application {
     }
 
     public void print(Transaction transaction) {
-        System.out.println(transaction.getType()+", "+transaction.getDescription()+", "+formatPounds(transaction.getMoney(),transaction.getType())+", "+formatDate(transaction.getDate()));
+        TransactionType type = transaction.getType();
+        String description = transaction.getDescription();
+        String money = formatPounds(transaction.getMoney(),transaction.getType());
+        String date = formatDate(transaction.getDate());
+        System.out.println(type+", "+description+", "+money+", "+date);
     }
 
     private String formatDate(Date date) {
