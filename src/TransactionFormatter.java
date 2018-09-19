@@ -3,6 +3,18 @@ import java.util.Date;
 
 public class TransactionFormatter {
 
+    Currency currency = new Currency();
+
+    public String[] format(Transaction[] transactions) {
+        String[] formattedTransactions = new String[transactions.length];
+        for (int i = 0; i < transactions.length; i++) {
+            Transaction transaction = transactions[i];
+            String formatted = format(transaction);
+            formattedTransactions[i] = formatted;
+        }
+        return formattedTransactions;
+    }
+
     public String format(Transaction transaction) {
         TransactionType type = transaction.getType();
         String description = transaction.getDescription();
@@ -12,7 +24,6 @@ public class TransactionFormatter {
     }
 
     private String formatPounds(long money, final TransactionType type) {
-        final Currency currency = new Currency();
         if (type == TransactionType.DEBIT) {
             money = -money;
         }
