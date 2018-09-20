@@ -1,9 +1,6 @@
 public class Logger {
 
-    public void print(String[] strings) {
-        for (String string : strings) {
-            System.out.println(string);
-        }
+    public void print(String string) {
+        System.out.println(string);
     }
-
 }
