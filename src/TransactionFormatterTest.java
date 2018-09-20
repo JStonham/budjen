@@ -1,9 +1,12 @@
 import org.junit.Test;
 
-import java.time.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.Month;
+import java.time.ZoneOffset;
 import java.util.Date;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class TransactionFormatterTest {
 
@@ -16,8 +19,8 @@ public class TransactionFormatterTest {
         String description = "Test";
         long money = -400;
         Date date = Date.from(LocalDate.of(2000, Month.JANUARY, 1)
-                                        .atTime(LocalTime.NOON)
-                                        .toInstant(ZoneOffset.UTC));
+                .atTime(LocalTime.NOON)
+                .toInstant(ZoneOffset.UTC));
 
         final Transaction transaction = new Transaction();
         transaction.setType(type);
@@ -26,8 +29,6 @@ public class TransactionFormatterTest {
         transaction.setDate(date);
 
         String transactionAsAString = target.format(transaction);
-        assertNotNull(transactionAsAString);
-        assertNotEquals("",transactionAsAString);
         assertEquals("DEBIT, Test, £4.00, 2000-01-01", transactionAsAString);
     }
 
@@ -48,8 +49,6 @@ public class TransactionFormatterTest {
         transaction.setDate(date);
 
         String transactionAsAString = target.format(transaction);
-        assertNotNull(transactionAsAString);
-        assertNotEquals("",transactionAsAString);
         assertEquals("CREDIT, Test, £70.00, 2010-12-31", transactionAsAString);
     }
 
