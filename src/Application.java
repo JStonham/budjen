@@ -7,7 +7,7 @@ public class Application {
 
     public void start() {
         Transaction[] data = transactionData.getTransactionData();
-        Transaction[] ordered = orderer.orderTheTransactions(data);
+        Transaction[] ordered = orderer.order(data);
         String[] strings = transactionFormatter.format(ordered);
         logger.print(strings);
     }
