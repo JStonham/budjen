@@ -1,44 +1,17 @@
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-
 public class Application {
 
+    TransactionData transactionData = new TransactionData();
+    Orderer orderer = new Orderer();
+    TransactionFormatter transactionFormatter = new TransactionFormatter();
+    Logger logger = new Logger();
+
     public void start() {
-        Transaction[] transactions = new TransactionData().getTransactionData();
-        Transaction[] orderedTransactions = orderTransactions(transactions);
-        for (Transaction transaction : orderedTransactions) {
-            print(transaction);
+        Transaction[] data = transactionData.getTransactionData();
+        Transaction[] ordered = orderer.order(data);
+        for (Transaction transaction : ordered) {
+            String string = transactionFormatter.format(transaction);
+            logger.print(string);
         }
     }
 
-    public Transaction[] orderTransactions(Transaction[] unorderedTransactions) {
-        List<Transaction> transactionList = Arrays.asList(unorderedTransactions);
-        transactionList.sort(Comparator.comparing(Transaction::getDate));
-        return transactionList.toArray(new Transaction[unorderedTransactions.length]);
-    }
-
-    public void print(Transaction transaction) {
-        TransactionType type = transaction.getType();
-        String description = transaction.getDescription();
-        String money = formatPounds(transaction.getMoney(),transaction.getType());
-        String date = formatDate(transaction.getDate());
-        System.out.println(type+", "+description+", "+money+", "+date);
-    }
-
-    private String formatDate(Date date) {
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        return simpleDateFormat.format(date);
-    }
-
-    public String formatPounds(long money, final TransactionType type) {
-        final Currency currency = new Currency();
-        if (type == TransactionType.DEBIT) {
-            money = -money;
-        }
-        return currency.formatPounds(money);
-    }
 }

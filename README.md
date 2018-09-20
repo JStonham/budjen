@@ -37,12 +37,12 @@
 1. The application should use the English language for input and output.
 1. The application should be built in the Java 8 programming language.
 
-## 2nd Sprint - created 06/09/2018
+## 2nd Sprint - created 30/08/2018
 transaction type field with enum for credit and debit and write tests
 rename bank to purse
 generate seed data - make lots of transactions with type, description and money
 
-## 3rd Sprint
+## 3rd Sprint - created 06/09/2018
 make seed data have different dates (TEST!!)
 create a main Application class that when run will print a list of all the transactions in chronological order (TEST!)
 
@@ -54,3 +54,11 @@ public class Budjen {
     }
 }
 ```
+
+## 4th Sprint - created 13/09/2018
+
+Classes should only have one purpose and at the moment Application is used for many things.
+Application should delegate to other classes using dependency fields.
+Use TDD to create the extra classes.
+
+Make sure you test the Orderer and the TransactionFormatter! You may attempt to test the Application class too as extra credit (not that there's a grading system) - but don't fret if you get stuck on that one.

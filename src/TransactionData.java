@@ -1,7 +1,6 @@
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 public class TransactionData {
+
+    private DateConverter dateConverter = new DateConverter();
 
     public Transaction[] getTransactionData() {
         return new Transaction[]{
@@ -39,13 +38,7 @@ public class TransactionData {
         transaction.setType(type);
         transaction.setDescription(description);
         transaction.setMoney(money);
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        try {
-            transaction.setDate(simpleDateFormat.parse(date));
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        transaction.setDate(dateConverter.convert(date));
         return transaction;
     }
 }
