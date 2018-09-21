@@ -1,6 +1,3 @@
-public class Logger {
-
-    public void print(String string) {
-        System.out.println(string);
-    }
+public interface Logger {
+    void print(String message);
 }

@@ -1,16 +1,22 @@
 public class Application {
 
-    TransactionData transactionData = new TransactionData();
-    Orderer orderer = new Orderer();
-    TransactionFormatter transactionFormatter = new TransactionFormatter();
-    Logger logger = new Logger();
+    // Hard-coded dependencies.
+    private final TransactionData transactionData;
+    private final Logger logger;
+
+    // Injected dependencies
+    private final Orderer orderer = new Orderer();
+    private final TransactionFormatter transactionFormatter = new TransactionFormatter();
+
+    public Application(final TransactionData data, final Logger logger) {
+        this.transactionData = data;
+        this.logger = logger;
+    }
 
     public void start() {
-        Transaction[] data = transactionData.getTransactionData();
-        Transaction[] ordered = orderer.order(data);
-        for (Transaction transaction : ordered) {
-            String string = transactionFormatter.format(transaction);
-            logger.print(string);
+        final Transaction[] data = transactionData.getTransactionData();
+        for (final Transaction transaction : orderer.order(data)) {
+            logger.print(transactionFormatter.format(transaction));
         }
     }
 
