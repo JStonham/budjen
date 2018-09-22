@@ -56,7 +56,7 @@ public class ApplicationTest {
     /**
      * This class replaces the default logger, and instead of printing to the
      * screen (no point in that for a test) it stores all received messages
-     * in order. These messages are then retrievable through a the getter.
+     * in order. These messages are then retrievable through getPrintedMessages.
      */
     private class TestLogger implements Logger {
         private List<String> printedMessages = new ArrayList<>();
@@ -64,7 +64,6 @@ public class ApplicationTest {
         @Override
         public void print(String message) {
             printedMessages.add(message);
-            System.out.println(message);
         }
 
         public List<String> getPrintedMessages() {

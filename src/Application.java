@@ -1,10 +1,8 @@
 public class Application {
 
-    // Hard-coded dependencies.
     private final TransactionData transactionData;
     private final Logger logger;
 
-    // Injected dependencies
     private final Orderer orderer = new Orderer();
     private final TransactionFormatter transactionFormatter = new TransactionFormatter();
 
