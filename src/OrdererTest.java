@@ -1,5 +1,9 @@
 import org.junit.Test;
-import static org.junit.Assert.assertArrayEquals;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class OrdererTest {
 
@@ -11,9 +15,15 @@ public class OrdererTest {
         final Transaction yesterday = makeTransaction("2018-04-20");
         final Transaction today = makeTransaction("2018-05-15");
         final Transaction tomorrow = makeTransaction("2018-06-12");
-        final Transaction[] unorderedTransactions = {yesterday, tomorrow, today};
-        final Transaction[] expecteds = {yesterday, today, tomorrow};
-        assertArrayEquals(expecteds, target.order(unorderedTransactions));
+
+        final List<Transaction> unorderedTransactions = Arrays.asList(yesterday, tomorrow, today);
+        final List<Transaction> expecteds = Arrays.asList(yesterday, today, tomorrow);
+        final List<Transaction> actual = target.order(unorderedTransactions);
+
+        assertEquals(actual.size(), expecteds.size());
+        for (int i = 0; i < actual.size(); i++) {
+            assertEquals(expecteds.get(i), actual.get(i));
+        }
     }
 
     private Transaction makeTransaction(String date) {

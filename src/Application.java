@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Application {
 
     private final TransactionData transactionData;
@@ -12,7 +14,7 @@ public class Application {
     }
 
     public void start() {
-        final Transaction[] data = transactionData.getTransactionData();
+        final List<Transaction> data = transactionData.getTransactionData();
         for (final Transaction transaction : orderer.order(data)) {
             logger.print(transactionFormatter.format(transaction));
         }

@@ -1,10 +1,13 @@
+import java.util.Arrays;
+import java.util.List;
+
 public class DefaultTransactionData implements TransactionData {
 
     private DateConverter dateConverter = new DateConverter();
 
     @Override
-    public Transaction[] getTransactionData() {
-        return new Transaction[]{
+    public List<Transaction> getTransactionData() {
+        return Arrays.asList(
                 credit("Dress Refund", 2999, "2017-09-28"),
                 credit("Pocket Money", 250, "2013-11-04"),
                 credit("Lottery winnings", 5600000, "2017-12-25"),
@@ -22,7 +25,7 @@ public class DefaultTransactionData implements TransactionData {
                 debit("Small Yacht", -5900099, "2018-05-07"),
                 debit("Plastic Surgery", -2500000, "2018-06-13"),
                 debit("Skiing holiday", -510000, "2018-01-28")
-        };
+        );
 
     }
 
