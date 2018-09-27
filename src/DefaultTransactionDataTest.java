@@ -2,9 +2,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class TransactionDataTest {
+public class DefaultTransactionDataTest {
 
-    private TransactionData target = new TransactionData();
+    private DefaultTransactionData target = new DefaultTransactionData();
 
     @Test
     public void seedsData() {

@@ -1,5 +1,73 @@
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+
 public class ApplicationTest {
 
-    private Application target = new Application();
+    private TestTransactionData testData = new TestTransactionData();
+    private TestLogger testLogger = new TestLogger();
 
+    private Application target = new Application(testData, testLogger);
+
+    @Test
+    public void testExpectedOutputGetsPrinted() {
+        target.start();
+        final List<String> messages = testLogger.getPrintedMessages();
+        assertEquals(2, messages.size());
+        assertEquals("CREDIT, Let flat, £4200.00, 2018-06-08", messages.get(0));
+        assertEquals("DEBIT, Plastic Surgery, £25000.00, 2018-06-13", messages.get(1));
+    }
+
+    /**
+     * This class replaces the test data we use when we run the application
+     * normally with something specific to this test.
+     * In particular, the data contains both credit and debit, and is unordered.
+     */
+    private class TestTransactionData implements TransactionData {
+        private final DateConverter dateConverter = new DateConverter();
+
+        @Override
+        public Transaction[] getTransactionData() {
+            return new Transaction[]{tomorrow(), yesterday()};
+        }
+
+        private Transaction yesterday() {
+            final Transaction transaction = new Transaction();
+            transaction.setType(TransactionType.CREDIT);
+            transaction.setDescription("Let flat");
+            transaction.setMoney(420_000L);
+            transaction.setDate(dateConverter.convert("2018-06-08"));
+            return transaction;
+        }
+
+        private Transaction tomorrow() {
+            final Transaction transaction = new Transaction();
+            transaction.setType(TransactionType.DEBIT);
+            transaction.setDescription("Plastic Surgery");
+            transaction.setMoney(-2_500_000L);
+            transaction.setDate(dateConverter.convert("2018-06-13"));
+            return transaction;
+        }
+    }
+
+    /**
+     * This class replaces the default logger, and instead of printing to the
+     * screen (no point in that for a test) it stores all received messages
+     * in order. These messages are then retrievable through getPrintedMessages.
+     */
+    private class TestLogger implements Logger {
+        private List<String> printedMessages = new ArrayList<>();
+
+        @Override
+        public void print(String message) {
+            printedMessages.add(message);
+        }
+
+        public List<String> getPrintedMessages() {
+            return printedMessages;
+        }
+    }
 }
