@@ -1,3 +1,5 @@
+import java.util.List;
+
 public interface TransactionData {
-    Transaction[] getTransactionData();
+    List<Transaction> getTransactionData();
 }

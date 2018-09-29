@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -30,8 +31,8 @@ public class ApplicationTest {
         private final DateConverter dateConverter = new DateConverter();
 
         @Override
-        public Transaction[] getTransactionData() {
-            return new Transaction[]{tomorrow(), yesterday()};
+        public List<Transaction> getTransactionData() {
+            return Arrays.asList(tomorrow(), yesterday());
         }
 
         private Transaction yesterday() {

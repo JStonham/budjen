@@ -4,9 +4,8 @@ import java.util.List;
 
 public class Orderer {
 
-    public Transaction[] order(Transaction[] unorderedTransactions) {
-        List<Transaction> transactionList = Arrays.asList(unorderedTransactions);
-        transactionList.sort(Comparator.comparing(Transaction::getDate));
-        return transactionList.toArray(new Transaction[unorderedTransactions.length]);
+    public List<Transaction> order(List<Transaction> transactions) {
+        transactions.sort(Comparator.comparing(Transaction::getDate));
+        return transactions;
     }
 }

@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class DefaultTransactionDataTest {
@@ -8,8 +10,8 @@ public class DefaultTransactionDataTest {
 
     @Test
     public void seedsData() {
-        final Transaction[] transactions = target.getTransactionData();
-        assertEquals(16, transactions.length);
+        final List<Transaction> transactions = target.getTransactionData();
+        assertEquals(16, transactions.size());
         for (final Transaction transaction : transactions) {
             assertNotEquals(0, transaction.getMoney());
             assertNotNull(transaction.getDescription());
