@@ -1,3 +1,7 @@
+package com.missafternoon.budjen;
+
+import com.missafternoon.budjen.transactions.*;
+
 import java.util.List;
 
 public class Application {

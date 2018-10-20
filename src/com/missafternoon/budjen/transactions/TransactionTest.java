@@ -1,3 +1,6 @@
+package com.missafternoon.budjen.transactions;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.Instant;
@@ -22,7 +25,7 @@ public class TransactionTest {
         final Transaction transaction = makeTransaction();
         assertEquals("Your account has been credited with £10.00", transaction.getSummary());
         assertEquals(1000, transaction.getMoney());
-        assertEquals(TransactionType.CREDIT, transaction.getType());
+        Assert.assertEquals(TransactionType.CREDIT, transaction.getType());
     }
 
     @Test
@@ -30,7 +33,7 @@ public class TransactionTest {
         final Transaction transaction = makeNegativeTransaction();
         assertEquals("You have spent £20.00", transaction.getSummary());
         assertEquals(-2000, transaction.getMoney());
-        assertEquals(TransactionType.DEBIT, transaction.getType());
+        Assert.assertEquals(TransactionType.DEBIT, transaction.getType());
     }
 
     @Test
@@ -38,7 +41,7 @@ public class TransactionTest {
         final Transaction transaction = makeNegativeTransaction2();
         assertEquals("You have spent £20.01", transaction.getSummary());
         assertEquals(-2001, transaction.getMoney());
-        assertEquals(TransactionType.DEBIT, transaction.getType());
+        Assert.assertEquals(TransactionType.DEBIT, transaction.getType());
     }
 
     @Test

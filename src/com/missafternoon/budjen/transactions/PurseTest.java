@@ -1,20 +1,22 @@
+package com.missafternoon.budjen.transactions;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class PurseTest {
+class PurseTest {
 
     private static final long BIG_NUMBER = 64_000_000_000L;
 
     private Purse target = new Purse();
 
     @Test
-    public void hasZeroBalanceByDefault() {
+    private void hasZeroBalanceByDefault() {
         assertEquals(0, target.getBalance());
     }
 
     @Test
-    public void canHandleMultipleTransactions() {
+    private void canHandleMultipleTransactions() {
         target.addTransaction(makeTransaction(128));
         target.addTransaction(makeTransaction(-256));
         target.addTransaction(makeTransaction(64));
@@ -22,7 +24,7 @@ public class PurseTest {
     }
 
     @Test
-    public void canHandleVeryLargeAmountsOfMoney() {
+    private void canHandleVeryLargeAmountsOfMoney() {
         target.addTransaction(makeTransaction(BIG_NUMBER));
         assertEquals(BIG_NUMBER, target.getBalance());
     }

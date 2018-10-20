@@ -1,3 +1,5 @@
+package com.missafternoon.budjen.transactions;
+
 import java.util.Arrays;
 import java.util.List;
 

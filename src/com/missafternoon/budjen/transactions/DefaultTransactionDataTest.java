@@ -1,21 +1,24 @@
+package com.missafternoon.budjen.transactions;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class DefaultTransactionDataTest {
+class DefaultTransactionDataTest {
 
     private DefaultTransactionData target = new DefaultTransactionData();
 
     @Test
-    public void seedsData() {
+    private void seedsData() {
         final List<Transaction> transactions = target.getTransactionData();
         assertEquals(16, transactions.size());
         for (final Transaction transaction : transactions) {
-            assertNotEquals(0, transaction.getMoney());
+            Assert.assertNotEquals(0, transaction.getMoney());
             assertNotNull(transaction.getDescription());
-            assertNotEquals("", transaction.getDescription());
+            Assert.assertNotEquals("", transaction.getDescription());
             assertNotNull(transaction.getType());
             assertNotNull(transaction.getDate());
         }

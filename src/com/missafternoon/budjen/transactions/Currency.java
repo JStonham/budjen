@@ -1,6 +1,8 @@
-public class Currency {
+package com.missafternoon.budjen.transactions;
 
-    public String formatPounds(final long i) {
+class Currency {
+
+    String formatPounds(final long i) {
         if (i == 0) {
             return "0";
         }

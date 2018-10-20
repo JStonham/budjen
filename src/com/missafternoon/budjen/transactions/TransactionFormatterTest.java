@@ -1,3 +1,5 @@
+package com.missafternoon.budjen.transactions;
+
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -8,12 +10,12 @@ import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
-public class TransactionFormatterTest {
+class TransactionFormatterTest {
 
     private TransactionFormatter target = new TransactionFormatter();
 
     @Test
-    public void testTransactionFormatterStringForDebit() {
+    private void testTransactionFormatterStringForDebit() {
 
         TransactionType type = TransactionType.DEBIT;
         String description = "Test";
@@ -33,7 +35,7 @@ public class TransactionFormatterTest {
     }
 
     @Test
-    public void testTransactionFormatterStringForCredit() {
+    private void testTransactionFormatterStringForCredit() {
 
         TransactionType type = TransactionType.CREDIT;
         String description = "Test";

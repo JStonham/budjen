@@ -1,3 +1,5 @@
+package com.missafternoon.budjen.transactions;
+
 public class TransactionFormatter {
 
     private Currency currency = new Currency();
