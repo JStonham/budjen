@@ -1,7 +1,6 @@
 package com.missafternoon.budjen.transactions;
 
 import com.missafternoon.budjen.formatting.DateConverter;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -9,13 +8,13 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-class OrdererTest {
+public class OrdererTest {
 
     private Orderer target = new Orderer();
     private DateConverter dateConverter = new DateConverter();
 
     @Test
-    private void ordersTransactions() {
+    public void ordersTransactions() {
         final Transaction yesterday = makeTransaction("2018-04-20");
         final Transaction today = makeTransaction("2018-05-15");
         final Transaction tomorrow = makeTransaction("2018-06-12");
@@ -26,7 +25,7 @@ class OrdererTest {
 
         assertEquals(actual.size(), expecteds.size());
         for (int i = 0; i < actual.size(); i++) {
-            Assert.assertEquals(expecteds.get(i), actual.get(i));
+            assertEquals(expecteds.get(i), actual.get(i));
         }
     }
 
