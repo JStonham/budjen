@@ -1,6 +1,6 @@
 package com.missafternoon.budjen;
 
-import com.missafternoon.budjen.transactions.DefaultLogger;
+import com.missafternoon.budjen.print.DefaultLogger;
 import com.missafternoon.budjen.transactions.DefaultTransactionData;
 
 public class Budjen {

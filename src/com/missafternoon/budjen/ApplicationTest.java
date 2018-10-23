@@ -4,7 +4,7 @@ import com.missafternoon.budjen.transactions.TransactionData;
 import com.missafternoon.budjen.formatting.DateConverter;
 import com.missafternoon.budjen.transactions.Transaction;
 import com.missafternoon.budjen.transactions.TransactionType;
-import com.missafternoon.budjen.transactions.Logger;
+import com.missafternoon.budjen.print.Logger;
 import org.junit.Test;
 
 import java.util.ArrayList;

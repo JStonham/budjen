@@ -1,4 +1,4 @@
-package com.missafternoon.budjen.transactions;
+package com.missafternoon.budjen.print;
 
 public interface Logger {
     void print(String message);
