@@ -4,19 +4,19 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-class PurseTest {
+public class PurseTest {
 
     private static final long BIG_NUMBER = 64_000_000_000L;
 
     private Purse target = new Purse();
 
     @Test
-    private void hasZeroBalanceByDefault() {
+    public void hasZeroBalanceByDefault() {
         assertEquals(0, target.getBalance());
     }
 
     @Test
-    private void canHandleMultipleTransactions() {
+    public void canHandleMultipleTransactions() {
         target.addTransaction(makeTransaction(128));
         target.addTransaction(makeTransaction(-256));
         target.addTransaction(makeTransaction(64));
@@ -24,7 +24,7 @@ class PurseTest {
     }
 
     @Test
-    private void canHandleVeryLargeAmountsOfMoney() {
+    public void canHandleVeryLargeAmountsOfMoney() {
         target.addTransaction(makeTransaction(BIG_NUMBER));
         assertEquals(BIG_NUMBER, target.getBalance());
     }
