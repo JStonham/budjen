@@ -1,3 +1,5 @@
+package com.missafternoon.budjen.formatting;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -21,7 +23,7 @@ public class CurrencyTest {
         runTest("£0.42", 42);
     }
 
-    private void runTest(final String s, final int i) {
+    public void runTest(final String s, final int i) {
         assertEquals(s, target.formatPounds(i));
     }
 

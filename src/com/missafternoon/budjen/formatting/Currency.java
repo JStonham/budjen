@@ -1,3 +1,5 @@
+package com.missafternoon.budjen.formatting;
+
 public class Currency {
 
     public String formatPounds(final long i) {

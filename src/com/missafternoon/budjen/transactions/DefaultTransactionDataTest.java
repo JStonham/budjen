@@ -1,3 +1,5 @@
+package com.missafternoon.budjen.transactions;
+
 import org.junit.Test;
 
 import java.util.List;

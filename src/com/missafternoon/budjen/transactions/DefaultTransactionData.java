@@ -1,3 +1,7 @@
+package com.missafternoon.budjen.transactions;
+
+import com.missafternoon.budjen.formatting.DateConverter;
+
 import java.util.Arrays;
 import java.util.List;
 

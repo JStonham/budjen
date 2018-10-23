@@ -1,3 +1,7 @@
+package com.missafternoon.budjen.transactions;
+
+import com.missafternoon.budjen.formatting.Currency;
+
 import java.util.Date;
 
 public class Transaction {
@@ -25,23 +29,23 @@ public class Transaction {
         }
     }
 
-    public TransactionType getType() {
+    TransactionType getType() {
         return type;
     }
 
-    public String getDescription() {
+    String getDescription() {
         return description;
     }
 
-    public Date getDate() {
+    Date getDate() {
         return date;
     }
 
-    public long getMoney() {
+    long getMoney() {
         return money;
     }
 
-    public String getSummary() {
+    String getSummary() {
         if (money == 0) {
             return "No data.";
         }

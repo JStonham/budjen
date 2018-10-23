@@ -1,3 +1,6 @@
+package com.missafternoon.budjen.transactions;
+
+import com.missafternoon.budjen.formatting.DateConverter;
 import org.junit.Test;
 
 import java.util.Arrays;
