@@ -1,4 +1,4 @@
-package com.missafternoon.budjen.transactions;
+package com.missafternoon.budjen.formatting;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

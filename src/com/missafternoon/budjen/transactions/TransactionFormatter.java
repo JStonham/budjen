@@ -1,5 +1,8 @@
 package com.missafternoon.budjen.transactions;
 
+import com.missafternoon.budjen.formatting.Currency;
+import com.missafternoon.budjen.formatting.DateConverter;
+
 public class TransactionFormatter {
 
     private Currency currency = new Currency();

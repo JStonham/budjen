@@ -1,7 +1,7 @@
 package com.missafternoon.budjen;
 
 import com.missafternoon.budjen.transactions.TransactionData;
-import com.missafternoon.budjen.transactions.DateConverter;
+import com.missafternoon.budjen.formatting.DateConverter;
 import com.missafternoon.budjen.transactions.Transaction;
 import com.missafternoon.budjen.transactions.TransactionType;
 import com.missafternoon.budjen.transactions.Logger;

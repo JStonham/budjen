@@ -1,5 +1,7 @@
 package com.missafternoon.budjen.transactions;
 
+import com.missafternoon.budjen.formatting.Currency;
+
 import java.util.Date;
 
 public class Transaction {
