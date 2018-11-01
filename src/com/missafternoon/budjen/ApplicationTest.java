@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.missafternoon.budjen.Application.HELP_MESSAGE;
 import static org.junit.Assert.assertEquals;
 
 public class ApplicationTest {
@@ -21,12 +22,36 @@ public class ApplicationTest {
     private Application target = new Application(testData, testLogger);
 
     @Test
-    public void testExpectedOutputGetsPrinted() {
-        target.start();
+    public void givenPrintAsInputArgument_PrintTransactions() {
+        target.start("print");
         final List<String> messages = testLogger.getPrintedMessages();
         assertEquals(2, messages.size());
         assertEquals("CREDIT, Let flat, £4200.00, 2018-06-08", messages.get(0));
         assertEquals("DEBIT, Plastic Surgery, £25000.00, 2018-06-13", messages.get(1));
+    }
+
+    @Test
+    public void testExpectedOutputGetsPrinted() {
+        target.start("");
+        assertHelpMessagePrinted();
+    }
+
+    @Test
+    public void givenHelpAsInputArgument_PrintHelpMessage() {
+        target.start("help");
+        assertHelpMessagePrinted();
+    }
+
+    @Test
+    public void givenRubbishAsInputArgument_PrintHelpMessage() {
+        target.start("dkjfhkjresh");
+        assertHelpMessagePrinted();
+    }
+
+    private void assertHelpMessagePrinted() {
+        final List<String> messages = testLogger.getPrintedMessages();
+        assertEquals(1, messages.size());
+        assertEquals(HELP_MESSAGE, messages.get(0));
     }
 
     /**
