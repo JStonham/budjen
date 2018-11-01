@@ -33,25 +33,25 @@ public class ApplicationTest {
     @Test
     public void testExpectedOutputGetsPrinted() {
         target.start("");
-        assertHelpMessagePrinted();
+        final List<String> messages = testLogger.getPrintedMessages();
+        assertEquals(1, messages.size());
+        assertEquals("budjen '' is not a budjen command. See 'budjen help'.",messages.get(0));
     }
 
     @Test
     public void givenHelpAsInputArgument_PrintHelpMessage() {
         target.start("help");
-        assertHelpMessagePrinted();
+        final List<String> messages = testLogger.getPrintedMessages();
+        assertEquals(1, messages.size());
+        assertEquals(HELP_MESSAGE, messages.get(0));
     }
 
     @Test
     public void givenRubbishAsInputArgument_PrintHelpMessage() {
         target.start("dkjfhkjresh");
-        assertHelpMessagePrinted();
-    }
-
-    private void assertHelpMessagePrinted() {
         final List<String> messages = testLogger.getPrintedMessages();
         assertEquals(1, messages.size());
-        assertEquals(HELP_MESSAGE, messages.get(0));
+        assertEquals("budjen 'dkjfhkjresh' is not a budjen command. See 'budjen help'.",messages.get(0));
     }
 
     /**

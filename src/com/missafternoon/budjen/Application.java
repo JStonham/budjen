@@ -26,13 +26,23 @@ public class Application {
     }
 
     public void start(String arg) {
-        if (!"print".equals(arg)) {
+        if ("print".equals(arg)) {
+            printTransactions();
+        } else if ("help".equals(arg)) {
             logger.print(HELP_MESSAGE);
-            return;
+        } else {
+            logger.print(makeErrorMessage(arg));
         }
+    }
+
+    private void printTransactions() {
         final List<Transaction> data = transactionData.getTransactionData();
         for (final Transaction transaction : orderer.order(data)) {
             logger.print(transactionFormatter.format(transaction));
         }
+    }
+
+    private String makeErrorMessage(final String arg) {
+        return "budjen '" + arg + "' is not a budjen command. See 'budjen help'.";
     }
 }
