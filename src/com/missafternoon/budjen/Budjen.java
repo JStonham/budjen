@@ -5,6 +5,13 @@ import com.missafternoon.budjen.transactions.DefaultTransactionData;
 
 public class Budjen {
     public static void main(String[] args) {
-        new Application(new DefaultTransactionData(), new DefaultLogger()).start(args[0]);
+        String arg;
+        if (args.length == 0) {
+            arg = null;
+        }
+        else {
+            arg = args[0];
+        }
+        new Application(new DefaultTransactionData(), new DefaultLogger()).start(arg);
     }
 }

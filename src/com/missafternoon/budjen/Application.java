@@ -28,7 +28,7 @@ public class Application {
     public void start(String arg) {
         if ("print".equals(arg)) {
             printTransactions();
-        } else if ("help".equals(arg)) {
+        } else if ("help".equals(arg) || arg == null) {
             logger.print(HELP_MESSAGE);
         } else {
             logger.print(makeErrorMessage(arg));
