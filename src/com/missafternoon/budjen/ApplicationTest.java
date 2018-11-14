@@ -1,10 +1,10 @@
 package com.missafternoon.budjen;
 
-import com.missafternoon.budjen.transactions.TransactionData;
 import com.missafternoon.budjen.formatting.DateConverter;
-import com.missafternoon.budjen.transactions.Transaction;
-import com.missafternoon.budjen.transactions.TransactionType;
 import com.missafternoon.budjen.print.Logger;
+import com.missafternoon.budjen.transactions.Transaction;
+import com.missafternoon.budjen.transactions.TransactionData;
+import com.missafternoon.budjen.transactions.TransactionType;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class ApplicationTest {
         target.start(input);
         final List<String> messages = testLogger.getPrintedMessages();
         assertEquals(1, messages.size());
-        assertEquals("budjen '' is not a budjen command. See 'budjen help'.",messages.get(0));
+        assertEquals("budjen '' is not a budjen command. See 'budjen help'.", messages.get(0));
     }
 
     @Test
@@ -55,7 +55,7 @@ public class ApplicationTest {
         target.start(input);
         final List<String> messages = testLogger.getPrintedMessages();
         assertEquals(1, messages.size());
-        assertEquals("budjen 'dkjfhkjresh' is not a budjen command. See 'budjen help'.",messages.get(0));
+        assertEquals("budjen 'dkjfhkjresh' is not a budjen command. See 'budjen help'.", messages.get(0));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class ApplicationTest {
         target.start(input);
         final List<String> messages = testLogger.getPrintedMessages();
         assertEquals(1, messages.size());
-        assertEquals(HELP_MESSAGE,messages.get(0));
+        assertEquals(HELP_MESSAGE, messages.get(0));
     }
 
     /**
