@@ -25,7 +25,14 @@ public class Application {
         this.logger = logger;
     }
 
-    public void start(String arg) {
+    public void start(String[] args) {
+        String arg;
+        if (args.length == 0) {
+            arg = null;
+        }
+        else {
+            arg = args[0];
+        }
         if ("print".equals(arg)) {
             printTransactions();
         } else if ("help".equals(arg) || arg == null) {
