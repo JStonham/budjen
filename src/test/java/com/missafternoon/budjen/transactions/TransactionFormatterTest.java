@@ -10,12 +10,12 @@ import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
-class TransactionFormatterTest {
+public class TransactionFormatterTest {
 
     private TransactionFormatter target = new TransactionFormatter();
 
     @Test
-    private void testTransactionFormatterStringForDebit() {
+    public void testTransactionFormatterStringForDebit() {
 
         TransactionType type = TransactionType.DEBIT;
         String description = "Test";
@@ -35,7 +35,7 @@ class TransactionFormatterTest {
     }
 
     @Test
-    private void testTransactionFormatterStringForCredit() {
+    public void testTransactionFormatterStringForCredit() {
 
         TransactionType type = TransactionType.CREDIT;
         String description = "Test";
