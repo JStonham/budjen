@@ -1,16 +1,17 @@
 package com.missafternoon.budjen;
 
-import com.missafternoon.budjen.transactions.TransactionData;
 import com.missafternoon.budjen.formatting.DateConverter;
-import com.missafternoon.budjen.transactions.Transaction;
-import com.missafternoon.budjen.transactions.TransactionType;
 import com.missafternoon.budjen.print.Logger;
+import com.missafternoon.budjen.transactions.Transaction;
+import com.missafternoon.budjen.transactions.TransactionData;
+import com.missafternoon.budjen.transactions.TransactionType;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.missafternoon.budjen.Application.HELP_MESSAGE;
 import static org.junit.Assert.assertEquals;
 
 public class ApplicationTest {
@@ -21,12 +22,44 @@ public class ApplicationTest {
     private Application target = new Application(testData, testLogger);
 
     @Test
-    public void testExpectedOutputGetsPrinted() {
-        target.start();
+    public void givenPrintAsInputArgument_PrintTransactions() {
+        target.start(new String[]{"print"});
         final List<String> messages = testLogger.getPrintedMessages();
         assertEquals(2, messages.size());
         assertEquals("CREDIT, Let flat, £4200.00, 2018-06-08", messages.get(0));
         assertEquals("DEBIT, Plastic Surgery, £25000.00, 2018-06-13", messages.get(1));
+    }
+
+    @Test
+    public void testExpectedOutputGetsPrinted() {
+        target.start(new String[]{""});
+        final List<String> messages = testLogger.getPrintedMessages();
+        assertEquals(1, messages.size());
+        assertEquals("budjen '' is not a budjen command. See 'budjen help'.", messages.get(0));
+    }
+
+    @Test
+    public void givenHelpAsInputArgument_PrintHelpMessage() {
+        target.start(new String[]{"help"});
+        final List<String> messages = testLogger.getPrintedMessages();
+        assertEquals(1, messages.size());
+        assertEquals(HELP_MESSAGE, messages.get(0));
+    }
+
+    @Test
+    public void givenRubbishAsInputArgument_PrintHelpMessage() {
+        target.start(new String[]{"dkjfhkjresh"});
+        final List<String> messages = testLogger.getPrintedMessages();
+        assertEquals(1, messages.size());
+        assertEquals("budjen 'dkjfhkjresh' is not a budjen command. See 'budjen help'.", messages.get(0));
+    }
+
+    @Test
+    public void givenNothingAsInputArgument_PrintHelpMessage() {
+        target.start(new String[]{});
+        final List<String> messages = testLogger.getPrintedMessages();
+        assertEquals(1, messages.size());
+        assertEquals(HELP_MESSAGE, messages.get(0));
     }
 
     /**
