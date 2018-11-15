@@ -23,8 +23,7 @@ public class ApplicationTest {
 
     @Test
     public void givenPrintAsInputArgument_PrintTransactions() {
-        String[] input = {"print"};
-        target.start(input);
+        target.start(new String[]{"print"});
         final List<String> messages = testLogger.getPrintedMessages();
         assertEquals(2, messages.size());
         assertEquals("CREDIT, Let flat, £4200.00, 2018-06-08", messages.get(0));
@@ -33,8 +32,7 @@ public class ApplicationTest {
 
     @Test
     public void testExpectedOutputGetsPrinted() {
-        String[] input = {""};
-        target.start(input);
+        target.start(new String[]{""});
         final List<String> messages = testLogger.getPrintedMessages();
         assertEquals(1, messages.size());
         assertEquals("budjen '' is not a budjen command. See 'budjen help'.", messages.get(0));
@@ -42,8 +40,7 @@ public class ApplicationTest {
 
     @Test
     public void givenHelpAsInputArgument_PrintHelpMessage() {
-        String[] input = {"help"};
-        target.start(input);
+        target.start(new String[]{"help"});
         final List<String> messages = testLogger.getPrintedMessages();
         assertEquals(1, messages.size());
         assertEquals(HELP_MESSAGE, messages.get(0));
@@ -51,8 +48,7 @@ public class ApplicationTest {
 
     @Test
     public void givenRubbishAsInputArgument_PrintHelpMessage() {
-        String[] input = {"dkjfhkjresh"};
-        target.start(input);
+        target.start(new String[]{"dkjfhkjresh"});
         final List<String> messages = testLogger.getPrintedMessages();
         assertEquals(1, messages.size());
         assertEquals("budjen 'dkjfhkjresh' is not a budjen command. See 'budjen help'.", messages.get(0));
@@ -60,8 +56,7 @@ public class ApplicationTest {
 
     @Test
     public void givenNothingAsInputArgument_PrintHelpMessage() {
-        String[] input = {};
-        target.start(input);
+        target.start(new String[]{});
         final List<String> messages = testLogger.getPrintedMessages();
         assertEquals(1, messages.size());
         assertEquals(HELP_MESSAGE, messages.get(0));

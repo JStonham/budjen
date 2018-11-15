@@ -26,16 +26,10 @@ public class Application {
     }
 
     public void start(String[] args) {
-        String arg;
-        if (args.length == 0) {
-            arg = null;
-        }
-        else {
-            arg = args[0];
-        }
+        final String arg = args.length > 0 ? args[0] : "help";
         if ("print".equals(arg)) {
             printTransactions();
-        } else if ("help".equals(arg) || arg == null) {
+        } else if ("help".equals(arg)) {
             logger.print(HELP_MESSAGE);
         } else {
             logger.print(makeErrorMessage(arg));
