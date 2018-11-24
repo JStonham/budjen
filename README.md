@@ -1,5 +1,7 @@
 # budjen
 
+[![Build Status](https://travis-ci.com/JStonham/budjen.svg?branch=master)](https://travis-ci.com/JStonham/budjen)
+
 # Design
 
 ## User Journey
