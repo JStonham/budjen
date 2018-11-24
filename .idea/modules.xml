@@ -5,6 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/budjen.iml" filepath="$PROJECT_DIR$/.idea/modules/budjen.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/budjen_main.iml" filepath="$PROJECT_DIR$/.idea/modules/budjen_main.iml" group="budjen" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/budjen_test.iml" filepath="$PROJECT_DIR$/.idea/modules/budjen_test.iml" group="budjen" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.missafternoon.budjen.iml" filepath="$PROJECT_DIR$/.idea/modules/com.missafternoon.budjen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.missafternoon.budjen.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.missafternoon.budjen.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.missafternoon.budjen.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.missafternoon.budjen.test.iml" />
     </modules>
   </component>
 </project>
