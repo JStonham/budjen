@@ -13,7 +13,18 @@ public class Application {
     public static final String HELP_MESSAGE = "" +
             "These are the commands available in budjen:\n" +
             "\n" +
-            "   print - Prints a list of transactions.";
+            "   print - Prints a list of transactions." +
+            "\n" +
+            "   add - Adds a new transaction." +
+            "\n" +
+            "       --credit" +
+            "\n" +
+            "       --debit" +
+            "\n" +
+            "       --description 'any words'" +
+            "\n" +
+            "       --amount 1200 [£12.00. Can be any positive value.]";
+
     private final TransactionData transactionData;
     private final Logger logger;
 
@@ -31,6 +42,8 @@ public class Application {
             printTransactions();
         } else if ("help".equals(arg)) {
             logger.print(HELP_MESSAGE);
+        } else if ("add".equals(arg)) {
+            logger.print(HELP_MESSAGE);
         } else {
             logger.print(makeErrorMessage(arg));
         }
@@ -46,4 +59,5 @@ public class Application {
     private String makeErrorMessage(final String arg) {
         return "budjen '" + arg + "' is not a budjen command. See 'budjen help'.";
     }
+
 }
