@@ -13,16 +13,11 @@ public class Application {
     public static final String HELP_MESSAGE = "" +
             "These are the commands available in budjen:\n" +
             "\n" +
-            "   print - Prints a list of transactions." +
-            "\n" +
-            "   add - Adds a new transaction." +
-            "\n" +
-            "       --credit" +
-            "\n" +
-            "       --debit" +
-            "\n" +
-            "       --description 'any words'" +
-            "\n" +
+            "   print - Prints a list of transactions.\n" +
+            "   add - Adds a new transaction.\n" +
+            "       --credit\n" +
+            "       --debit\n" +
+            "       --description 'any words'\n" +
             "       --amount 1200 [£12.00. Can be any positive value.]";
 
     private final TransactionData transactionData;
