@@ -99,7 +99,7 @@ class Validator {
         for (int i = 0; i < args.length; i++) {
             if ("--amount".equals(args[i])) {
                 String next = args[i + 1];
-                return contains(new String[]{"500"}, next);
+                return isNumber(next);
             }
         }
         return false;
@@ -112,5 +112,14 @@ class Validator {
             }
         }
         return false;
+    }
+
+    private boolean isNumber(String arg) {
+        try {
+            Long.valueOf(arg);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }
