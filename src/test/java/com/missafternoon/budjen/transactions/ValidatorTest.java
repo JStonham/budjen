@@ -53,12 +53,10 @@ public class ValidatorTest {
         shouldFail("add", "--description", "--amount", "--debit", "battery", "staple");
     }
 
-    /*
     @Test
     public void orderOfParametersIsGibberishAgainSoShouldBeInvalidated() {
         shouldFail("add", "--description", "I bought a dog", "--debit", "--amount", "staple"); // amount should be a number
     }
-     */
 
     private void shouldFail(String... args) {
         assertFalse(new Validator().validate(args));
@@ -81,14 +79,27 @@ class Validator {
         if (!ifDescriptionIsFollowedByString(args)) {
             return false;
         }
+        if (!ifAmountIsFollowedByNumber(args)) {
+            return false;
+        }
         return true;
     }
 
     private boolean ifDescriptionIsFollowedByString(String[] args) {
         for (int i = 0; i < args.length; i++) {
             if ("--description".equals(args[i])) {
-                String next = args[i+1];
+                String next = args[i + 1];
                 return !contains(new String[]{"--amount", "", "--credit", "--debit"}, next);
+            }
+        }
+        return false;
+    }
+
+    private boolean ifAmountIsFollowedByNumber(String[] args) {
+        for (int i = 0; i < args.length; i++) {
+            if ("--amount".equals(args[i])) {
+                String next = args[i + 1];
+                return contains(new String[]{"500"}, next);
             }
         }
         return false;
