@@ -62,6 +62,14 @@ public class ApplicationTest {
         assertEquals(HELP_MESSAGE, messages.get(0));
     }
 
+    @Test
+    public void givenAddAsInputArgument_PrintTransactionAdded() {
+        target.start(new String[]{"add"});
+        final List<String> messages = testLogger.getPrintedMessages();
+        assertEquals(1, messages.size());
+        assertEquals(HELP_MESSAGE, messages.get(0));
+    }
+
     /**
      * This class replaces the test data we use when we run the application
      * normally with something specific to this test.
