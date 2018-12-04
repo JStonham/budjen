@@ -76,16 +76,13 @@ class Validator {
         )) {
             return false;
         }
-        if (!ifDescriptionIsFollowedByString(args)) {
+        if (!DescriptionIsFollowedByString(args)) {
             return false;
         }
-        if (!ifAmountIsFollowedByNumber(args)) {
-            return false;
-        }
-        return true;
+        return AmountIsFollowedByNumber(args);
     }
 
-    private boolean ifDescriptionIsFollowedByString(String[] args) {
+    private boolean DescriptionIsFollowedByString(String[] args) {
         for (int i = 0; i < args.length; i++) {
             if ("--description".equals(args[i])) {
                 String next = args[i + 1];
@@ -95,7 +92,7 @@ class Validator {
         return false;
     }
 
-    private boolean ifAmountIsFollowedByNumber(String[] args) {
+    private boolean AmountIsFollowedByNumber(String[] args) {
         for (int i = 0; i < args.length; i++) {
             if ("--amount".equals(args[i])) {
                 String next = args[i + 1];
