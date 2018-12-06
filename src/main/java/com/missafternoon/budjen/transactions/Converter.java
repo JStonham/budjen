@@ -1,8 +1,8 @@
 package com.missafternoon.budjen.transactions;
 
-class Converter {
+public class Converter {
 
-    Transaction convert(String[] args) {
+    public Transaction convert(String[] args) {
         final Transaction transaction = new Transaction();
         transaction.setType(findType(args));
         transaction.setDescription(findDescription(args));
