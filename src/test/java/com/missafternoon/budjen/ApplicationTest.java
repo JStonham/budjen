@@ -8,7 +8,6 @@ import com.missafternoon.budjen.transactions.TransactionType;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.missafternoon.budjen.Application.HELP_MESSAGE;
@@ -33,41 +32,45 @@ public class ApplicationTest {
     @Test
     public void testExpectedOutputGetsPrinted() {
         target.start(new String[]{""});
-        final List<String> messages = testLogger.getPrintedMessages();
-        assertEquals(1, messages.size());
-        assertEquals("budjen '' is not a budjen command. See 'budjen help'.", messages.get(0));
+        expectSingleLogCall("budjen '' is not a budjen command. See 'budjen help'.");
     }
 
     @Test
     public void givenHelpAsInputArgument_PrintHelpMessage() {
         target.start(new String[]{"help"});
-        final List<String> messages = testLogger.getPrintedMessages();
-        assertEquals(1, messages.size());
-        assertEquals(HELP_MESSAGE, messages.get(0));
+        expectSingleLogCall(HELP_MESSAGE);
     }
 
     @Test
     public void givenRubbishAsInputArgument_PrintHelpMessage() {
         target.start(new String[]{"dkjfhkjresh"});
-        final List<String> messages = testLogger.getPrintedMessages();
-        assertEquals(1, messages.size());
-        assertEquals("budjen 'dkjfhkjresh' is not a budjen command. See 'budjen help'.", messages.get(0));
+        expectSingleLogCall("budjen 'dkjfhkjresh' is not a budjen command. See 'budjen help'.");
     }
 
     @Test
     public void givenNothingAsInputArgument_PrintHelpMessage() {
         target.start(new String[]{});
-        final List<String> messages = testLogger.getPrintedMessages();
-        assertEquals(1, messages.size());
-        assertEquals(HELP_MESSAGE, messages.get(0));
+        expectSingleLogCall(HELP_MESSAGE);
     }
 
     @Test
-    public void givenAddAsInputArgument_PrintTransactionAdded() {
-        target.start(new String[]{"add"});
+    public void givenGarbageForAddCommand_tellMeValidationFailed() {
+        target.start(new String[]{"add", "ufdshglieahgliurea", "sglreaglehrg"});
+        expectSingleLogCall("Invalid arguments given to add command.");
+    }
+
+    @Test
+    public void givenCorrectInputForAddCommand_addToTransactionData() {
+        int size = testData.getTransactionData().size();
+        target.start(new String[]{"add", "--debit", "--description", "fish", "--amount", "500"});
+        int newSize = testData.getTransactionData().size();
+        assertEquals(size + 1, newSize);
+    }
+
+    private void expectSingleLogCall(String helpMessage) {
         final List<String> messages = testLogger.getPrintedMessages();
         assertEquals(1, messages.size());
-        assertEquals(HELP_MESSAGE, messages.get(0));
+        assertEquals(helpMessage, messages.get(0));
     }
 
     /**
@@ -77,10 +80,16 @@ public class ApplicationTest {
      */
     private class TestTransactionData implements TransactionData {
         private final DateConverter dateConverter = new DateConverter();
+        private final List<Transaction> list = new ArrayList<>();
+
+        TestTransactionData() {
+            list.add(tomorrow());
+            list.add(yesterday());
+        }
 
         @Override
         public List<Transaction> getTransactionData() {
-            return Arrays.asList(tomorrow(), yesterday());
+            return list;
         }
 
         private Transaction yesterday() {
@@ -115,7 +124,7 @@ public class ApplicationTest {
             printedMessages.add(message);
         }
 
-        public List<String> getPrintedMessages() {
+        List<String> getPrintedMessages() {
             return printedMessages;
         }
     }

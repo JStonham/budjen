@@ -1,8 +1,8 @@
 package com.missafternoon.budjen.transactions;
 
-class Validator {
+public class Validator {
 
-    boolean validate(String[] args) {
+    public boolean validate(String[] args) {
         if (args.length != 6) {
             return false;
         }
