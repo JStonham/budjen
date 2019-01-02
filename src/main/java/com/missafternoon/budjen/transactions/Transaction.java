@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.missafternoon.budjen.formatting.Currency;
 
 import java.util.Date;
-import java.util.TimeZone;
 
 public class Transaction {
 
