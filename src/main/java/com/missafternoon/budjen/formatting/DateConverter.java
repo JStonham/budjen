@@ -3,6 +3,7 @@ package com.missafternoon.budjen.formatting;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class DateConverter {
 
@@ -15,6 +16,7 @@ public class DateConverter {
     public Date convert(String string) {
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
         try {
             return simpleDateFormat.parse(string);
         } catch (ParseException e) {
