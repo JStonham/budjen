@@ -1,7 +1,10 @@
 package com.missafternoon.budjen.transactions;
 
 import com.missafternoon.budjen.formatting.DateConverter;
+import org.json.JSONException;
 import org.junit.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +18,13 @@ public class JSONInterpreterTest {
 
     @Test
 
-    public void writeJavaObjectIntoJSONString() {
+    public void writeJavaObjectIntoJSONString() throws JSONException {
         String json = target.convertToString(testData.getTransactionData());
-        assertEquals("CREDIT, Let flat, £4200.00, 2018-06-08, DEBIT, Plastic Surgery, £25000.00, 2018-06-13", json);
+        String expectedJson = "[" +
+                "{\"type\":\"DEBIT\",\"description\":\"Plastic Surgery\",\"money\":-2500000,\"date\":\"2018-06-13\"}," +
+                "{\"type\":\"CREDIT\",\"description\":\"Let flat\",\"money\":420000,\"date\":\"2018-06-08\"}" +
+                "]";
+        JSONAssert.assertEquals(expectedJson, json, JSONCompareMode.STRICT);
     }
 
     @Test

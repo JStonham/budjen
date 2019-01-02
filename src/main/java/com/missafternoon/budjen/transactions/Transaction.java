@@ -29,19 +29,19 @@ public class Transaction {
         }
     }
 
-    TransactionType getType() {
+    public TransactionType getType() {
         return type;
     }
 
-    String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    Date getDate() {
+    public Date getDate() {
         return date;
     }
 
-    long getMoney() {
+    public long getMoney() {
         return money;
     }
 
