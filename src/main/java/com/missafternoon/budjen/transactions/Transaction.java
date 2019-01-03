@@ -1,5 +1,6 @@
 package com.missafternoon.budjen.transactions;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.missafternoon.budjen.formatting.Currency;
 
 import java.util.Date;
@@ -9,6 +10,7 @@ public class Transaction {
     private TransactionType type;
     private String description;
     private long money;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "UTC")
     private Date date = new Date();
 
     public void setType(TransactionType type) {
@@ -29,19 +31,19 @@ public class Transaction {
         }
     }
 
-    TransactionType getType() {
+    public TransactionType getType() {
         return type;
     }
 
-    String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    Date getDate() {
+    public Date getDate() {
         return date;
     }
 
-    long getMoney() {
+    public long getMoney() {
         return money;
     }
 
