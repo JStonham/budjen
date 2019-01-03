@@ -6,27 +6,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.List;
 
-public class JSONInterpreter {
+class JSONInterpreter {
 
-    private ObjectMapper mapper;
+    private final ObjectMapper mapper = new ObjectMapper();
 
-    public JSONInterpreter() {
-        mapper = new ObjectMapper();
-    }
-
-    public String convertToString(List<Transaction> transactions) {
+    String convertToString(final List<Transaction> transactions) {
         try {
             return mapper.writeValueAsString(transactions);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public List<Transaction> convertToTransactions(String string) {
+    List<Transaction> convertToTransactions(final String string) {
         try {
             return mapper.readValue(string, new TypeReference<List<Transaction>>() {
             });
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new RuntimeException(e);
         }
     }
