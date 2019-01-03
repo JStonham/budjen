@@ -18,8 +18,8 @@ public class JSONInterpreter {
         try {
             return mapper.writeValueAsString(transactions);
         } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        throw new RuntimeException();
     }
 
     public List<Transaction> convertToTransactions(String string) {
@@ -27,7 +27,7 @@ public class JSONInterpreter {
             return mapper.readValue(string, new TypeReference<List<Transaction>>() {
             });
         } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        throw new RuntimeException();
     }
 }
