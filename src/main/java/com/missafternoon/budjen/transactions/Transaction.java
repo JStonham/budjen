@@ -10,7 +10,7 @@ public class Transaction {
     private TransactionType type;
     private String description;
     private long money;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "GMT")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "UTC")
     private Date date = new Date();
 
     public void setType(TransactionType type) {

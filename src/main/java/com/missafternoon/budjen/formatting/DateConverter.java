@@ -16,7 +16,7 @@ public class DateConverter {
     public Date convert(String string) {
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         try {
             return simpleDateFormat.parse(string);
         } catch (ParseException e) {
