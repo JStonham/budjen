@@ -7,9 +7,9 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -17,9 +17,9 @@ public class JSONInterpreterTest {
 
     private JSONInterpreter target = new JSONInterpreter();
     private TestTransactionData testData = new TestTransactionData();
+    private DateConverter dateConverter = new DateConverter();
 
     @Test
-
     public void writeJavaObjectIntoJSONString() throws JSONException {
         String json = target.convertToString(testData.getTransactionData());
         String expectedJson = "[" +
@@ -31,38 +31,45 @@ public class JSONInterpreterTest {
     }
 
     @Test
-
     public void readJSONStringIntoJavaObject() {
-        String json = "[" +
+        final String json = "[" +
                 "{\"type\":\"DEBIT\",\"description\":\"Fuel\",\"money\":-2500,\"date\":\"2018-12-16\"}," +
                 "{\"type\":\"CREDIT\",\"description\":\"Work\",\"money\":300000,\"date\":\"2018-11-14\"}" +
                 "]";
 
-        DateConverter dateConverter = new DateConverter();
-        Transaction expectedTransaction1 = new Transaction();
-        expectedTransaction1.setType(TransactionType.DEBIT);
-        expectedTransaction1.setDescription("Fuel");
-        expectedTransaction1.setMoney(-2500);
-        expectedTransaction1.setDate(dateConverter.convert("2018-12-16"));
-        Transaction expectedTransaction2 = new Transaction();
-        expectedTransaction2.setType(TransactionType.CREDIT);
-        expectedTransaction2.setDescription("Work");
-        expectedTransaction2.setMoney(300000);
-        expectedTransaction2.setDate(dateConverter.convert("2018-11-14"));
-        List<Transaction> expectedTransactions = Arrays.asList(expectedTransaction1, expectedTransaction2);
-
-        List<Transaction> transactions = target.convertToTransactions(json);
+        final List<Transaction> transactions = target.convertToTransactions(json);
+        final List<Transaction> expectedTransactions = asList(firstTransaction(), secondTransaction());
 
         assertEquals(expectedTransactions.size(), transactions.size());
         for (int i = 0; i < expectedTransactions.size(); i++) {
-            Transaction expected = expectedTransactions.get(i);
-            Transaction actual = transactions.get(i);
-            assertNotNull(actual);
-            assertEquals(expected.getType(), actual.getType());
-            assertEquals(expected.getDescription(), actual.getDescription());
-            assertEquals(expected.getMoney(), actual.getMoney());
-            assertEquals(expected.getDate(), actual.getDate());
+            assertSameProperties(expectedTransactions.get(i), transactions.get(i));
         }
+    }
+
+    private void assertSameProperties(final Transaction expected, final Transaction actual) {
+        assertNotNull(actual);
+        assertEquals(expected.getType(), actual.getType());
+        assertEquals(expected.getDescription(), actual.getDescription());
+        assertEquals(expected.getMoney(), actual.getMoney());
+        assertEquals(expected.getDate(), actual.getDate());
+    }
+
+    private Transaction firstTransaction() {
+        final Transaction firstTransaction = new Transaction();
+        firstTransaction.setType(TransactionType.DEBIT);
+        firstTransaction.setDescription("Fuel");
+        firstTransaction.setMoney(-2500);
+        firstTransaction.setDate(dateConverter.convert("2018-12-16"));
+        return firstTransaction;
+    }
+
+    private Transaction secondTransaction() {
+        final Transaction secondTransaction = new Transaction();
+        secondTransaction.setType(TransactionType.CREDIT);
+        secondTransaction.setDescription("Work");
+        secondTransaction.setMoney(300000);
+        secondTransaction.setDate(dateConverter.convert("2018-11-14"));
+        return secondTransaction;
     }
 
     private class TestTransactionData implements TransactionData {
