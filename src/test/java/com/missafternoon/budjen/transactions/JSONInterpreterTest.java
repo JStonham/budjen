@@ -26,6 +26,7 @@ public class JSONInterpreterTest {
                 "{\"type\":\"DEBIT\",\"description\":\"Plastic Surgery\",\"money\":-2500000,\"date\":\"2018-06-13\"}," +
                 "{\"type\":\"CREDIT\",\"description\":\"Let flat\",\"money\":420000,\"date\":\"2018-06-08\"}" +
                 "]";
+
         JSONAssert.assertEquals(expectedJson, json, JSONCompareMode.STRICT);
     }
 
@@ -62,9 +63,6 @@ public class JSONInterpreterTest {
             assertEquals(expected.getMoney(), actual.getMoney());
             assertEquals(expected.getDate(), actual.getDate());
         }
-
-        // TODO: Investigate overriding .equals for Transaction instead, replacing the above block with the below line
-        //assertEquals(expectedTransactions, transactions);
     }
 
     private class TestTransactionData implements TransactionData {
