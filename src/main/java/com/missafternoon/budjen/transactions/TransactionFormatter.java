@@ -13,7 +13,7 @@ public class TransactionFormatter {
         String description = transaction.getDescription();
         String money = formatPounds(transaction.getMoney(),transaction.getType());
         String date = dateConverter.convert(transaction.getDate());
-        return type+", "+description+", "+money+", "+date;
+        return type + ", " + description + ", " + money + ", " + date;
     }
 
     private String formatPounds(long money, final TransactionType type) {

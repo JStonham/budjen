@@ -43,7 +43,10 @@ public class DefaultTransactionData implements TransactionData {
         return makeTransaction(description, money, TransactionType.DEBIT, date);
     }
 
-    private Transaction makeTransaction(final String description, final long money, final TransactionType type, final String date) {
+    private Transaction makeTransaction(final String description,
+            final long money,
+            final TransactionType type,
+            final String date) {
         final Transaction transaction = new Transaction();
         transaction.setType(type);
         transaction.setDescription(description);

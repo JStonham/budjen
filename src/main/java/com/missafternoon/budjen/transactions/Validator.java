@@ -10,16 +10,16 @@ public class Validator {
                 && contains(args, "--description")
                 && contains(args, "--amount")
                 && (contains(args, "--credit") ^ contains(args, "--debit"))
-        )) {
+            )) {
             return false;
         }
-        if (!DescriptionIsFollowedByString(args)) {
+        if (!descriptionIsFollowedByString(args)) {
             return false;
         }
-        return AmountIsFollowedByNumber(args);
+        return amountIsFollowedByNumber(args);
     }
 
-    private boolean DescriptionIsFollowedByString(String[] args) {
+    private boolean descriptionIsFollowedByString(String[] args) {
         for (int i = 0; i < args.length; i++) {
             if ("--description".equals(args[i])) {
                 String next = args[i + 1];
@@ -29,7 +29,7 @@ public class Validator {
         return false;
     }
 
-    private boolean AmountIsFollowedByNumber(String[] args) {
+    private boolean amountIsFollowedByNumber(String[] args) {
         for (int i = 0; i < args.length; i++) {
             if ("--amount".equals(args[i])) {
                 String next = args[i + 1];
