@@ -55,7 +55,8 @@ public class ValidatorTest {
 
     @Test
     public void orderOfParametersIsGibberishAgainSoShouldBeInvalidated() {
-        shouldFail("add", "--description", "I bought a dog", "--debit", "--amount", "staple"); // amount should be a number
+        // amount should be a number
+        shouldFail("add", "--description", "I bought a dog", "--debit", "--amount", "staple");
     }
 
     private void shouldFail(String... args) {
